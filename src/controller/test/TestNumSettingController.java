@@ -32,7 +32,7 @@ public class TestNumSettingController extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		numSettingController = NumSettingController.getInstance();
-		numSettingController.dictionary = dictionary; 
+//		numSettingController.dictionary = dictionary; 
 		context.checking(new Expectations(){
 			{
 				allowing(dictionary).getWordListLengthAt(0);
