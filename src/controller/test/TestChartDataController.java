@@ -31,7 +31,7 @@ public class TestChartDataController extends TestCase {
 
 	@Test
 	public void testGetAllNum() {
-		assert
+		
 	}
 
 	@Test
