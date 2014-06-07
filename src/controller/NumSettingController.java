@@ -1,16 +1,16 @@
 package controller;
 
-import controller.test.mock.Dictionary;
-import controller.test.mock.IDictionary;
+//import controller.test.mock.Dictionary;
+//import controller.test.mock.IDictionary;
 
-//import model.Dictionary;
+import model.Dictionary;
 
 public class NumSettingController {
     
 	private int num;
 	private int maxNum;
 	private static NumSettingController instance = new NumSettingController();
-	public IDictionary dictionary = new Dictionary();
+//	public IDictionary dictionary = new Dictionary();
 	private NumSettingController(){
 		
 	}
@@ -37,7 +37,8 @@ public class NumSettingController {
 	}
 	
 	public int getMaxNum(int letterPosition, int firstWordIndex){	
-		int length = dictionary.getWordListLengthAt(letterPosition);
+		int length =Dictionary.getInstance().getWordListLengthAt(letterPosition);
+//		int length  =  dictionary.getWordListLengthAt(letterPosition);
 		maxNum = length-firstWordIndex;
 		return maxNum;	
 	} 
