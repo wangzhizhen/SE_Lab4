@@ -1,6 +1,7 @@
 package controller;
 
 
+
 public class LetterPositionSettingController {
 	private int letterPosition;
 	// implement as singleton
