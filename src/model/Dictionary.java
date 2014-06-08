@@ -52,6 +52,9 @@ public class Dictionary implements IDictionary{
 	public int getWordListLengthAt(int letterPosition){
 		return wordListArray[letterPosition].getWordArray().size();
 	}
+	public Word getWordAt(int letterPosition, int wordIndex){
+		return wordListArray[letterPosition].getWordArray().get(wordIndex);
+	}
 	
 
 }
