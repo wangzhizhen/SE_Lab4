@@ -59,6 +59,14 @@ public class TestNumSettingController extends TestCase {
 		//num is bigger than the maxNum
 		numSettingController.getMaxNum(0, 50);
 		testSetNumWithParam(1, 512, 570);
+		
+		//num is equal to the maxNum
+		numSettingController.getMaxNum(0, 0);
+		testSetNumWithParam(0, 562, 562);
+		
+		//num is minor
+		numSettingController.getMaxNum(0, 0);
+		testSetNumWithParam(0, -1, -1);
 	}
 
 	@Test

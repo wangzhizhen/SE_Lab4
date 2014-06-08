@@ -27,10 +27,11 @@ public class Controller {
 
 	public int setFirstWordIndex(int option, int letterPosition, String input) {
 		// option-
-		// 1-��һ��
-		// 2-�ϴε�λ��
-		// 3-�û�����
-		int retval = 0;// 0 ��ȷ��1 ������Ϣ����2�ѱ���ôʿ�
+		// 1-first word
+		// 2-from last time
+		// 3-user input
+		int retval = 0;// -1 first time to play, 0 correct 
+		//1 invalid input, 2 already reach the end
 		if (option == 1) {
 			retval = firstWordSettingController.setFromFirstWord();
 		} else if (option == 2) {
@@ -63,7 +64,7 @@ public class Controller {
 		int num = 0;
 		try {
 			num = Integer.parseInt(numInput);
-			if (num == 0) {
+			if (num <= 0) {
 				retval = 2;
 			} else {
 				retval = numSettingController.setNum(num);
@@ -88,7 +89,7 @@ public class Controller {
 		return string;
 	}
 
-	public String normalQuizRun(String inputText) {
+	public String normalQuizRun(String inputText){
 		int compareResult = normalQuizController.compare(inputText);
 		normalQuizController.updateQuiz(compareResult);
 		String retval = null;// retval is the chinese of the next word or NULL
@@ -100,7 +101,6 @@ public class Controller {
 			normalQuizController.stop(cur
 					+ firstWordSettingController.getFirstWordIndex());
 			retval = null;
-			// show the statistics, need to use the ChartDataController
 		} else {
 			retval = normalQuizController.next();
 		}
