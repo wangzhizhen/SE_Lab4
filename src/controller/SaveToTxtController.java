@@ -12,7 +12,7 @@ public class SaveToTxtController implements ISaveController {
 	}
 	public void save(Quiz quiz,int cur) {
 		// save to the file
-		TxtFileParser.getInstance().saveToAllFiles(quiz,cur);
+		TxtFileParser.getInstance().saveToAllFiles(quiz,cur,"file/statefile.txt");
 	}
 
 }

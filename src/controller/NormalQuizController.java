@@ -32,12 +32,13 @@ public class NormalQuizController implements IQuizController {
 		// return the chinese of current Word
 		curWordIndex = 0;
 		int i = firstWordIndex;
-//		System.out.println("firstWordIndex: from Normal QuizController"+firstWordIndex);
 		ArrayList<Word> tempQuizList = new ArrayList<Word>();
 		for (; i < (num + firstWordIndex); i++) {
-			tempQuizList.add(Dictionary.getInstance().getWordAt(letterPosition,
-					i));
-			System.out.println("test!!!!"+tempQuizList.get(0));
+			Word wordFromDictionaryWord =  Dictionary.getInstance().getWordAt(letterPosition,
+					i);
+			Word newWord = new Word(wordFromDictionaryWord.getEnglish(), wordFromDictionaryWord.getChinese(), 
+					wordFromDictionaryWord.getState());
+			tempQuizList.add(newWord);
 		}
 		quiz = new Quiz(tempQuizList);
 		return quiz.getWordAt(curWordIndex).getChinese();

@@ -52,6 +52,7 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("WordMaster");
+		setVisible(true);
 
 	}
 
@@ -467,6 +468,7 @@ public class MainFrame extends JFrame {
 					remove(numPanel);
 				} else if (result == 2) {
 					JOptionPane.showMessageDialog(null, "输入不合法");
+					numPanel.getTextField().setText("");
 				}
 			}
 		});
@@ -496,6 +498,7 @@ public class MainFrame extends JFrame {
 							controller.getPreviousWordEnglish(), compareResult);
 					playPanel.getNextButton().removeMouseListener(
 							playPanel.getNextButton().getMouseListeners()[0]);
+					playPanel.getSaveAndExitButton().removeMouseListener(playPanel.getSaveAndExitButton().getMouseListeners()[0]);
 					Timer timer = new Timer();
 					timer.schedule(new TimerTask() {
 						@Override

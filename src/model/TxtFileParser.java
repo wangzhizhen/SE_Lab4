@@ -114,7 +114,8 @@ public class TxtFileParser implements IDictionaryParser {
 				}
 				// Close the output stream
 				bufferedWriter.close();
-			} else {
+			} 
+//			 {
 				BufferedReader bufferedReader = new BufferedReader(
 						new FileReader(filename));
 				int state = 0;
@@ -124,12 +125,14 @@ public class TxtFileParser implements IDictionaryParser {
 					int len = wordArray.size();
 					for (int j = 0; j < len; j++) {
 						state = Integer.parseInt(bufferedReader.readLine());
-						wordArray.get(j).setState(state);
+						Dictionary.getInstance()
+						.getWordListArray()[i].getWordArray().get(j).setState(state);
+//						System.out.println(wordArray.get(0).getState());
 					}
 
 				}
 				bufferedReader.close();
-			}
+//			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -218,9 +221,15 @@ public class TxtFileParser implements IDictionaryParser {
 				int tmp = 0;
 				// Modify the states
 				for (int j = start; j <= end; j++) {
+					int oldState = Dictionary.getInstance().getWordListArray()[i].getWordArray().get(j).getState();
+					System.out.println(oldState);
+					int newState = quizList.get(tmp).getState();
+					System.out.println(newState);
+					if(oldState != 2){
 					Dictionary.getInstance().getWordListArray()[i]
 							.getWordArray().get(j)
-							.setState(quizList.get(tmp).getState());
+							.setState(newState);
+					}
 					tmp++;
 				}
 				break;
@@ -228,9 +237,9 @@ public class TxtFileParser implements IDictionaryParser {
 		}
 	}
 
-	public void modifyTheStateFile() {
+	public void modifyTheStateFile(String filename) {
 		int state = 0;
-		String filename = "file/statefile.txt";
+//		String filename = "file/statefile.txt";
 		File file = new File(filename);
 		try {
 			// Delete the old file
@@ -328,11 +337,11 @@ public class TxtFileParser implements IDictionaryParser {
 
 	}
 
-	public void saveToAllFiles(Quiz quiz, int cur) {
+	public void saveToAllFiles(Quiz quiz, int cur, String filename) {
 		String letterStr = "abcdefghijklmnopqrstuvwxyz";
 		int index = letterStr.indexOf(quiz.getWordAt(0).getEnglish().charAt(0));
 		updateTheState(quiz);
-		modifyTheStateFile();
+		modifyTheStateFile(filename);
 		setLastTimeIndexFile(index, cur);
 	}
 

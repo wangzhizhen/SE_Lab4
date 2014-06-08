@@ -88,6 +88,7 @@ public class WordPanel extends JPanel {
 		leftFirstPanel.setOpaque(false);
 		leftFirstPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		jrbFirst.setText("从第一个单词开始");
+		jrbFirst.setOpaque(false);
 		jrbFirst.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
 		jrbFirst.setForeground(Color.DARK_GRAY);
 		group.add(jrbFirst);
@@ -99,9 +100,11 @@ public class WordPanel extends JPanel {
 		leftSecondPanel.setOpaque(false);
 		leftSecondPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		jrbLast.setText("从上一次结束处开始");
+		jrbLast.setOpaque(false);
 		jrbLast.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
 		jrbLast.setForeground(Color.DARK_GRAY);
 		jrbInput.setText("输入起始单词");
+		jrbLast.setOpaque(false);
 		jrbInput.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
 		jrbInput.setForeground(Color.DARK_GRAY);
 		group.add(jrbInput);
