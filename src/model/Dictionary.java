@@ -7,7 +7,7 @@ public class Dictionary implements IDictionary{
 	WordList[] wordListArray = new WordList[26];
 	TreeSet<String> dictionaryTree = new TreeSet<String>();
 	
-	public Dictionary(){
+	private Dictionary(){
 		
 	}
 	
@@ -26,16 +26,26 @@ public class Dictionary implements IDictionary{
 	}
 	
 	public void setWordListAt(int letterPosition,WordList wordList){
-		wordListArray[letterPosition] = wordList;
+		try{
+			if(letterPosition >= 0 && letterPosition < 26)
+				wordListArray[letterPosition] = wordList;
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public boolean contains(int letterPosition, String input){
-		ArrayList<Word> wordList = wordListArray[letterPosition].getWordArray();
-		int len = wordList.size();
-		for(int i = 0; i < len; i ++){
-			String English = wordList.get(i).getEnglish();
-			if(English.equals(input)){
-				return true;
+		if(letterPosition < 0 || letterPosition > wordListArray.length - 1)
+			return false;
+		else{
+			ArrayList<Word> wordList = wordListArray[letterPosition].getWordArray();
+			int len = wordList.size();
+			for(int i = 0; i < len; i ++){
+				String English = wordList.get(i).getEnglish();
+				if(English.equals(input)){
+					return true;
+				}
 			}
 		}
 		return false;
@@ -50,7 +60,10 @@ public class Dictionary implements IDictionary{
 	}
 	
 	public int getWordListLengthAt(int letterPosition){
-		return wordListArray[letterPosition].getWordArray().size();
+		if(letterPosition < 0 || letterPosition > wordListArray.length - 1)
+			return -1;
+		else
+			return wordListArray[letterPosition].getWordArray().size();
 	}
 	
 

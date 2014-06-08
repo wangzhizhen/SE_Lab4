@@ -25,7 +25,8 @@ public class WordList {
 	}
 	
 	public void setWordAt(int index,Word word){
-		wordArray.set(index, word);
+		if(index >= 0 && index < wordArray.size())
+			wordArray.set(index, word);
 	}
 	
 	public ArrayList<Word> getWordArray(){

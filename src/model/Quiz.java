@@ -41,6 +41,10 @@ public class Quiz {
 	}
 	
 	public Word getWordAt(int currentWordIndex){
-		return quizList.get(currentWordIndex);
+		if(currentWordIndex < 0 || currentWordIndex > quizList.size() - 1)
+			return null;
+		else{
+			return quizList.get(currentWordIndex);
+		}
 	}
 }

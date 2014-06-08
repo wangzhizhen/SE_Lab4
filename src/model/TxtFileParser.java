@@ -16,11 +16,11 @@ import java.util.TreeSet;
 public class TxtFileParser implements IDictionaryParser{
 	Hashtable<String,Integer> indexHash = new Hashtable<String,Integer>();
 	
-	private TxtFileParser(String filename){
-		//init(filename);
+	private TxtFileParser(){
+		
 	}
 
-	private static final TxtFileParser instance = new TxtFileParser("file/txtfile.txt");
+	private static final TxtFileParser instance = new TxtFileParser();
 
     public static TxtFileParser getInstance() {
     	return  instance;
@@ -28,7 +28,7 @@ public class TxtFileParser implements IDictionaryParser{
     
     public void init(String filename){
     	int num = readFromTxtFile(filename);
-    	initTheStateFile(num);
+    	initTheStateFile(num, "file/statefile");
     	
     }
     
@@ -69,6 +69,7 @@ public class TxtFileParser implements IDictionaryParser{
 				System.out.println(wordArr[1]);
 				if(wordArr[0].charAt(0) == firstCharArr[index]){
 					wordList.add(word);
+					System.out.println("$$$$$$$$$$$"+wordArr[0]+"    "+hashIndex);
 					indexHash.put(wordArr[0], hashIndex);
 					hashIndex ++;
 				}
@@ -80,6 +81,7 @@ public class TxtFileParser implements IDictionaryParser{
 					System.out.println(hashIndex);
 					hashIndex = 0;
 					indexHash.put(wordArr[0], hashIndex);
+					hashIndex ++;
 					index ++;
 				}
 			}
@@ -100,10 +102,8 @@ public class TxtFileParser implements IDictionaryParser{
     	return num;
     }
 	
-    public void initTheStateFile(int num){
-    	String filename = "file/statefile.txt";
+    public void initTheStateFile(int num, String filename){
 		File file = new File(filename);
-		
 		try {
 			if(!file.exists()){
 				file.createNewFile();
@@ -179,49 +179,68 @@ public class TxtFileParser implements IDictionaryParser{
 		return stateArr;
 	}
 	
-	public void updateTheState(Quiz quiz){
+	public void updateTheState(Quiz quiz) {
 		ArrayList<Word> quizList = quiz.getQuizList();
 		int size = quizList.size();
-		char[] firstCharArr = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+		char[] firstCharArr = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+				'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+				'v', 'w', 'x', 'y', 'z' };
 		char firstChar = quizList.get(0).getEnglish().charAt(0);
-		
-		//Modify dictionary according to quiz
-		for(int i = 0; i < 26; i ++){
-			if(firstChar == firstCharArr[i]){
-				ArrayList<Word> tmpList = Dictionary.getInstance().getWordListArray()[i].getWordArray();
+
+		// Modify dictionary according to quiz
+		for (int i = 0; i < 26; i++) {
+			if (firstChar == firstCharArr[i]) {
+				ArrayList<Word> tmpList = Dictionary.getInstance()
+						.getWordListArray()[i].getWordArray();
 				int len = tmpList.size();
 				int start = 0;
 				int end = 0;
-				//Find the index of the start word
-				for(int j = 0; j < len; j ++){
-					//If this word's Chinese and English meaning are the same with the start word
-					if(quizList.get(0).getEnglish().equals(tmpList.get(j).getEnglish())&&quizList.get(0).getChinese().equals(tmpList.get(j).getChinese())){
+				// Find the index of the start word
+				for (int j = 0; j < len; j++) {
+					// If this word's Chinese and English meaning are the same
+					// with the start word
+					if (quizList.get(0).getEnglish()
+							.equals(tmpList.get(j).getEnglish())
+							&& quizList.get(0).getChinese()
+									.equals(tmpList.get(j).getChinese())) {
 						start = j;
 						break;
 					}
 				}
-				//Find the index of the end word
-				for(int j = 0; j < len; j ++){
-					//If this word's Chinese and English meaning are the same with the end word
-					if(quizList.get(size-1).getEnglish().equals(tmpList.get(j).getEnglish())&&quizList.get(size-1).getChinese().equals(tmpList.get(j).getChinese())){
+				// Find the index of the end word
+				for (int j = 0; j < len; j++) {
+					// If this word's Chinese and English meaning are the same
+					// with the end word
+					if (quizList.get(size - 1).getEnglish()
+							.equals(tmpList.get(j).getEnglish())
+							&& quizList.get(size - 1).getChinese()
+									.equals(tmpList.get(j).getChinese())) {
 						end = j;
 						break;
 					}
 				}
 				int tmp = 0;
-				//Modify the states
-				for(int j = start; j <= end; j ++){
-					Dictionary.getInstance().getWordListArray()[i].getWordArray().get(j).setState(quizList.get(tmp).getState());
-					tmp ++;
-				}	
+				// Modify the states
+				for (int j = start; j <= end; j++) {
+					int oldState = Dictionary.getInstance().getWordListArray()[i].getWordArray().get(j).getState();
+					System.out.println(oldState);
+					int newState = quizList.get(tmp).getState();
+					System.out.println(newState);
+					if(oldState != 2){
+					Dictionary.getInstance().getWordListArray()[i]
+							.getWordArray().get(j)
+							.setState(newState);
+					}
+					tmp++;
+				}
 				break;
 			}
 		}
 	}
 
-	public void modifyTheStateFile(){
+
+	public void modifyTheStateFile(String filename){
 		int state = 0;
-		String filename = "file/statefile.txt";
 		File file = new File(filename);  
 		try {
 			//Delete the old file
@@ -321,11 +340,11 @@ public class TxtFileParser implements IDictionaryParser{
 		
 	}
 	
-	public void saveToAllFiles(Quiz quiz, int cur){
+	public void saveToAllFiles(Quiz quiz, int cur, String filename){
 		String letterStr = "abcdefghijklmnopqrstuvwxyz";
 		int index = letterStr.indexOf(quiz.getWordAt(0).getEnglish().charAt(0));
 		updateTheState(quiz);
-		modifyTheStateFile();
+		modifyTheStateFile(filename);
 		setLastTimeIndexFile(index, cur);
 	}
     
