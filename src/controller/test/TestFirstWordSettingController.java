@@ -11,10 +11,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import controller.FirstWordSettingController;
+/**
+ * @author Zhizhen
+ *
+ */
 
 public class TestFirstWordSettingController {
 
 	FirstWordSettingController controller;
+	TxtFileParser parser;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -26,7 +31,8 @@ public class TestFirstWordSettingController {
 	@Before
 	public void setUp() throws Exception {
 		controller = FirstWordSettingController.getInstance();
-		TxtFileParser.getInstance().init("file/txtfile.txt");
+		parser = TxtFileParser.getInstance();
+		parser.init("file/txtfile.txt");
 	}
 
 	@After
@@ -38,11 +44,6 @@ public class TestFirstWordSettingController {
 		assertEquals(0, controller.setFromFirstWord());
 	}
 
-	@Test
-	public void testGetFirstWordIndex() {
-		
-		assertEquals(0, controller.getFirstWordIndex());
-	}
 	@Test
 	public void testSetFromUserInput(){
 		//param is "Test"
@@ -93,13 +94,32 @@ public class TestFirstWordSettingController {
 		assertArrayEquals(expected, testSetStringMatchingWithParam(0,""));
 		
 		//param is (0, null)
-
 		expected= new String[]{"", "",""};
 		assertArrayEquals(expected, testSetStringMatchingWithParam(0,null));
 		
 		
 	}
 	
+	@Test
+	public void testSetFromLastTime(){
+		//letterPosition is 0 play the game the first time
+		parser.setLastTimeIndexFile(0, -1);
+		testFromLastTimeWithParam(-1, 0, 0);
+		
+		//letterPosition is 0 The wordList has the last time index
+		parser.setLastTimeIndexFile(0, 0);
+		testFromLastTimeWithParam(0,0,0);
+
+		
+		//letterPosition is 0 The wordList has the last time index
+		parser.setLastTimeIndexFile(0, 5);
+		testFromLastTimeWithParam(0,5,0);
+		
+		//letterPosition is 0 The wordList have all been recited
+		parser.setLastTimeIndexFile(0, 562);
+		testFromLastTimeWithParam(2,0,0);
+				
+	}
 	
 	private int testSetFromUserInputWithParam(int letterPsorition,String input){
 		return controller.setFromUserInput(letterPsorition, input);
@@ -115,5 +135,11 @@ public class TestFirstWordSettingController {
 		return controller.stringMatching(input, letterPsorition);
 	}
 	
+	private void testFromLastTimeWithParam(int expectedState,int expectedVal,int letterPosition){
+		int actualState = controller.setFromLastTime(letterPosition);
+		int actualVal = controller.getFirstWordIndex();
+		assertEquals(expectedState, actualState);
+		assertEquals(expectedVal, actualVal);
+	}
 
 }

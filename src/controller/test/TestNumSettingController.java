@@ -1,13 +1,17 @@
 package controller.test;
 
+
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import model.Dictionary;
+import model.TxtFileParser;
 
 import controller.NumSettingController;
-import controller.test.mock.IDictionary;
+
 
 import junit.framework.*;
 import org.jmock.*;
@@ -16,8 +20,7 @@ import org.jmock.*;
 public class TestNumSettingController extends TestCase {
 
 	private NumSettingController numSettingController;
-	Mockery context = new Mockery();
-	final IDictionary dictionary = context.mock(IDictionary.class);
+	Dictionary dictionary;
       
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -32,13 +35,8 @@ public class TestNumSettingController extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		numSettingController = NumSettingController.getInstance();
-//		numSettingController.dictionary = dictionary; 
-		context.checking(new Expectations(){
-			{
-				allowing(dictionary).getWordListLengthAt(0);
-				will(returnValue(100));			
-			}
-		});
+		dictionary = Dictionary.getInstance();
+		TxtFileParser.getInstance().init("file/txtfile.txt");
 	}
 
 	@After
@@ -54,33 +52,29 @@ public class TestNumSettingController extends TestCase {
 
 	@Test
 	public void testSetNumAndGetNum() {
-		System.out.println(numSettingController.getMaxNum(0, 10));
-		int val1 = numSettingController.setNum(0);
-		assertEquals(0, val1);
-		assertEquals(0,numSettingController.getNum());
-		int val2 = numSettingController.setNum(50);
-		assertEquals(0, val2);
-		assertEquals(50,numSettingController.getNum());
-		int val3 = numSettingController.setNum(100);
-		assertEquals(1, val3);
-		assertEquals(90,numSettingController.getNum());
+		//num is less than the maxNum
+		numSettingController.getMaxNum(0, 0);
+		testSetNumWithParam(0, 50, 50);
+		
+		//num is bigger than the maxNum
+		numSettingController.getMaxNum(0, 50);
+		testSetNumWithParam(1, 512, 570);
 	}
 
 	@Test
-	public void testGetMaxNum() {
-		
+	public void testGetMaxNum() {		
 		int actual = numSettingController.getMaxNum(0, 10);
-		assertEquals(90, actual);		
-		assertGetWordListLengthAt(0,100);
+		assertEquals(552, actual);				
 		System.out.println(actual);
-
+		actual = numSettingController.getMaxNum(0, 0);
+		assertEquals(562, actual);				
+		System.out.println(actual);
 	}
 
-	
-	private void assertGetWordListLengthAt(int letterPosition, int expected) {
-		// TODO Auto-generated method stub
-		int actual = dictionary.getWordListLengthAt(letterPosition);
-		Assert.assertEquals(expected, actual);
+	private void testSetNumWithParam(int expectedState,int expectedVal,int num){
+	    int actualState = numSettingController.setNum(num);
+		assertEquals(expectedState, actualState);
+		int actualVal = numSettingController.getNum();
+		assertEquals(expectedVal, actualVal);
 	}
-
 }
