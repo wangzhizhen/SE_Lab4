@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/controller/ChartDataController.java=UTF-8
 encoding//src/controller/Controller.java=UTF-8
+encoding//src/controller/FirstWordSettingController.java=UTF-8
 encoding//src/controller/NumSettingController.java=UTF-8
 encoding//src/view=UTF-8
 encoding//src/view/MainFrame.java=UTF-8
+

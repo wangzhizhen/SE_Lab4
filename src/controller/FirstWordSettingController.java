@@ -25,12 +25,12 @@ public class FirstWordSettingController {
 
 	public int setFromUserInput(int letterPosition, String input) {
 		boolean bool = true;
-		// �ж��û�����ĵ����Ƿ���wordList��
+		// check if the input is in the dictionary
 		bool = Dictionary.getInstance().contains(letterPosition, input);
 
 		if (bool) {
 			// set the firstWordIndex using HashTable in
-			// TxtFileParser(�洢�˵���Ӣ�����ڴʿ���λ�õ�һһ��Ӧ)
+			// TxtFileParser()
 			firstWordIndex = TxtFileParser.getInstance().getIndexHash()
 					.get(input);
 			System.out.println("firstWordIndex from FirstWordSettingController:"+firstWordIndex);
@@ -46,8 +46,11 @@ public class FirstWordSettingController {
 	public int setFromLastTime(int letterPosition) {
 		int lastTimeIndex = TxtFileParser.getInstance().readLastTimeIndexFile(
 				letterPosition);
+		System.out.println(Dictionary.getInstance().getWordListLengthAt(
+				letterPosition));
 		if (lastTimeIndex == Dictionary.getInstance().getWordListLengthAt(
 				letterPosition)) {
+		
 			firstWordIndex = 0;
 			return 2;
 		} else if (lastTimeIndex == -1) {
@@ -63,8 +66,18 @@ public class FirstWordSettingController {
 	public String[] stringMatching(String input, int letterPosition) {
 		// use TreeSet to do the string matching
 		// get the word
-		String lowerInput = input.toLowerCase();
+		
 		String[] matchResult = new String[3];
+		
+		//if input is "" or null
+		if(input == null || input.equals("")){
+			matchResult[0] = "";
+			matchResult[1] = "";
+			matchResult[2] = "";
+			return matchResult;
+		}
+		String lowerInput = input.toLowerCase();
+
 		if ((lowerInput.charAt(0) - 'a') != letterPosition) {
 			matchResult[0] = "";
 			matchResult[1] = "";
