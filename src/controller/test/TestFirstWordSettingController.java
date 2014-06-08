@@ -37,7 +37,23 @@ public class TestFirstWordSettingController {
 
 	@Test
 	public void testGetFirstWordIndex() {
+		
 		assertEquals(0, controller.getFirstWordIndex());
+	}
+	@Test
+	public void testSetFromUserInput(){
+		//param is "Test"
+		assertEquals(1,testSetFromUserInputWithParam("Test"));
+		assertEquals(0, controller.getFirstWordIndex());
+		
+		//param is "1234"
+		assertEquals(1,testSetFromUserInputWithParam("1234"));
+		assertEquals(0, controller.getFirstWordIndex());
+		
+		//param is ""
+	}
+	public int testSetFromUserInputWithParam(String input){
+		return controller.setFromUserInput(0, input);
 	}
 
 }
