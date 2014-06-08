@@ -56,7 +56,7 @@ public class MainFrame extends JFrame {
 
 	}
 
-	public void initActsForQuizResultPanel() {
+	private void initActsForQuizResultPanel() {
 		quizResultPanel.getReturnButton().addMouseListener(new MouseAdapter() {
 			// when mouse enter the letter, cursor becomes a hand
 			public void mouseEntered(MouseEvent e) {
@@ -80,7 +80,7 @@ public class MainFrame extends JFrame {
 		});
 	}
 
-	public void initActsForChoosePanel() {
+	private void initActsForChoosePanel() {
 
 		// add listener to getStartButton
 		choosePanel.getStartButton().addMouseListener(new MouseAdapter() {
@@ -217,7 +217,7 @@ public class MainFrame extends JFrame {
 
 	}
 
-	public void initActsForWordPanel() {
+	private void initActsForWordPanel() {
 		// add listeners to ReturnToCBt
 		wordPanel.getReturnToCButton().addMouseListener(new MouseAdapter() {
 			// when mouse enter the letter, cursor becomes a hand
@@ -397,7 +397,7 @@ public class MainFrame extends JFrame {
 
 	}
 
-	public void initActsForNumPanel() {
+	private void initActsForNumPanel() {
 		// add listeners to ReturnToWButton
 		numPanel.getReturnToWButton().addMouseListener(new MouseAdapter() {
 			// when mouse enter the letter, cursor becomes a hand
@@ -475,7 +475,7 @@ public class MainFrame extends JFrame {
 
 	}
 
-	public void initActsForPlayPanel() {
+	private void initActsForPlayPanel() {
 		// add listeners to NextButton
 		playPanel.getNextButton().addMouseListener(new MouseAdapter() {
 			// when mouse enter the letter, cursor becomes a hand
@@ -584,7 +584,7 @@ public class MainFrame extends JFrame {
 		});
 	}
 
-	public void initActsForCurrentWordListResultPanel() {
+	private void initActsForCurrentWordListResultPanel() {
 		currentWordListResultPanel.getReturnButton().addMouseListener(
 				new MouseAdapter() {
 					// when mouse enter the letter, cursor becomes a hand
@@ -609,7 +609,7 @@ public class MainFrame extends JFrame {
 				});
 	}
 
-	public void initActsForAllResultPanel() {
+	private void initActsForAllResultPanel() {
 		// add listener to getStartButton
 		allResultPanel.getReturnButton().addMouseListener(new MouseAdapter() {
 			// when mouse enter the letter, cursor becomes a hand
@@ -631,11 +631,6 @@ public class MainFrame extends JFrame {
 				setLocationRelativeTo(null);
 			}
 		});
-	}
-
-	public Dictionary getDictionary() {
-
-		return new Dictionary();
 	}
 
 }

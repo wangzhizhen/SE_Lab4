@@ -30,7 +30,7 @@ import org.jfree.data.general.DefaultPieDataset;
 
 @SuppressWarnings("serial")
 public class AllResultPanel extends JPanel {
-	private JLabel returnToC = new JLabel(new ImageIcon(
+	private JLabel returnToButton = new JLabel(new ImageIcon(
 			"icons/returnMainButton.png"));
 	private JTable table = new JTable();
 	/* datas needed for drawing the charts */
@@ -127,7 +127,7 @@ public class AllResultPanel extends JPanel {
 		centerChartPanel.add(totalBarPanel);
 
 		southPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 15));
-		southPanel.add(returnToC);
+		southPanel.add(returnToButton);
 
 		// for show Chinese
 		finishedBarChart.getTitle().setFont(
@@ -224,7 +224,7 @@ public class AllResultPanel extends JPanel {
 	}
 
 	public JLabel getReturnButton() {
-		return returnToC;
+		return returnToButton;
 	}
 
 }

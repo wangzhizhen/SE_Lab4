@@ -25,7 +25,7 @@ import org.jfree.data.general.DefaultPieDataset;
 
 @SuppressWarnings("serial")
 public class CurrentWordListResultPanel extends JPanel {
-	private JLabel returnToC = new JLabel(new ImageIcon(
+	private JLabel returnButton = new JLabel(new ImageIcon(
 			"icons/returnMainButton.png"));
 	private JTable table = new JTable();
 
@@ -107,7 +107,7 @@ public class CurrentWordListResultPanel extends JPanel {
 		centerChartPanel.add(finishedPiePanel);
 		centerChartPanel.add(totalPiePanel);
 
-		southPanel.add(returnToC);
+		southPanel.add(returnButton);
 
 		// for showing chinese
 		TextTitle textTitle = finishedPieChart.getTitle();
@@ -142,7 +142,7 @@ public class CurrentWordListResultPanel extends JPanel {
 	}
 
 	public JLabel getReturnButton() {
-		return returnToC;
+		return returnButton;
 	}
 
 	private void setTableContent(String wordBankName, int totalWordNum,
