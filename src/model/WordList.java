@@ -24,15 +24,11 @@ public class WordList {
 		this.lastTimeIndex = lastTimeIndex;
 	}
 	
-	public void setWordAt(int index,Word word){
-		wordArray.set(index, word);
+	public void setWord(Word word){
+		wordArray.add(word);
 	}
 	
 	public ArrayList<Word> getWordArray(){
 		return wordArray;
-	}
-	
-	public void setWordArray(ArrayList<Word> wordArray){
-		this.wordArray = wordArray;
 	}
 }

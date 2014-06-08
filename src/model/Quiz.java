@@ -7,40 +7,42 @@ public class Quiz {
 	int totalNum;
 	int correctNum;
 	int wrongNum;
-
+	
 	public Quiz(ArrayList<Word> quizList){
 		this.quizList = quizList;
 	}
-
+	
 	public ArrayList<Word> getQuizList(){
 		return quizList;
 	}
-
+	
 	public int getCorrectNum(){
 		return correctNum;
 	}
-
+	
 	public void setCorrectNum(int cNum){
-		this.correctNum = cNum;
+		correctNum = cNum ;
 	}
-
+	
 	public int getWrongNum(){
 		return wrongNum;
 	}
-
+	
 	public void setWrongNum(int wNum){
-		this.wrongNum = wNum;
+		wrongNum = wNum;
 	}
-
+	
 	public int getTotalNum(){
 		return totalNum;
 	}
-
+	
 	public void setTotalNum(int tNum){
-		this.totalNum = tNum;
+		totalNum = tNum;
 	}
-
+	
 	public Word getWordAt(int currentWordIndex){
-		return quizList.get(currentWordIndex);
+			System.out.println();
+			return quizList.get(currentWordIndex);
+		
 	}
 }

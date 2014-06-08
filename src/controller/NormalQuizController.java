@@ -16,6 +16,7 @@ public class NormalQuizController implements IQuizController {
 	private int num;
 	private int curWordIndex = 0;
 	private int compareResult = 0;
+	private int saveToken=0;
 
 	private NormalQuizController() {
 
@@ -31,10 +32,12 @@ public class NormalQuizController implements IQuizController {
 		// return the chinese of current Word
 		curWordIndex = 0;
 		int i = firstWordIndex;
+//		System.out.println("firstWordIndex: from Normal QuizController"+firstWordIndex);
 		ArrayList<Word> tempQuizList = new ArrayList<Word>();
 		for (; i < (num + firstWordIndex); i++) {
 			tempQuizList.add(Dictionary.getInstance().getWordAt(letterPosition,
 					i));
+			System.out.println("test!!!!"+tempQuizList.get(0));
 		}
 		quiz = new Quiz(tempQuizList);
 		return quiz.getWordAt(curWordIndex).getChinese();
@@ -79,9 +82,12 @@ public class NormalQuizController implements IQuizController {
 	@Override
 	public void stop(int cur) {
 		// save
-		SaveControllerFactory saveControllerFactory = new SaveControllerFactory();
+		SaveToTxtControllerFactory saveControllerFactory ;
+//		if(this.saveToken==0){
+		 saveControllerFactory = new SaveToTxtControllerFactory();
+//		}
 		ISaveController saveController = saveControllerFactory
-				.getSaveController("saveToTxtController");
+				.getSaveController();
 		saveController.updateDictionary(quiz);
 		saveController.save(quiz, cur);
 

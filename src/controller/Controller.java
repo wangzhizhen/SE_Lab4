@@ -4,7 +4,8 @@ public class Controller {
 
 	private LetterPositionSettingController letterPositionSettingController = LetterPositionSettingController
 			.getInstance();
-	private FirstWordSettingController firstWordSettingController = FirstWordSettingController.getInstance();
+	private FirstWordSettingController firstWordSettingController = FirstWordSettingController
+			.getInstance();
 	private NumSettingController numSettingController = NumSettingController
 			.getInstance();
 	private NormalQuizController normalQuizController = NormalQuizController
@@ -26,11 +27,10 @@ public class Controller {
 
 	public int setFirstWordIndex(int option, int letterPosition, String input) {
 		// option-
-		// 1-from first word
-		// 2-from last time
-		// 3-from user input
-		int retval = 0;// -1 first time using the application; 0 succeed 
-						//1 input invalid;2 end of the wordList
+		// 1-��һ��
+		// 2-�ϴε�λ��
+		// 3-�û�����
+		int retval = 0;// 0 ��ȷ��1 ������Ϣ����2�ѱ���ôʿ�
 		if (option == 1) {
 			retval = firstWordSettingController.setFromFirstWord();
 		} else if (option == 2) {

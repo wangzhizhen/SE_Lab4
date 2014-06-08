@@ -1,19 +1,18 @@
 package controller;
 
 import model.Quiz;
+import model.TxtFileParser;
+
 
 public class SaveToTxtController implements ISaveController {
 
-	@Override
-	public void updateDictionary(Quiz quiz) {
-		// TODO Auto-generated method stub
-
+	public void updateDictionary(Quiz quiz){
+		//save the state to Dictionary
+		TxtFileParser.getInstance().updateTheState(quiz);
 	}
-
-	@Override
-	public void save(Quiz quiz, int cur) {
-		// TODO Auto-generated method stub
-
+	public void save(Quiz quiz,int cur) {
+		// save to the file
+		TxtFileParser.getInstance().saveToAllFiles(quiz,cur);
 	}
 
 }

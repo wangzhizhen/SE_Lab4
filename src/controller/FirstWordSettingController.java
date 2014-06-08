@@ -25,14 +25,16 @@ public class FirstWordSettingController {
 
 	public int setFromUserInput(int letterPosition, String input) {
 		boolean bool = true;
-		// check it userinput is a valid word in dictionary
+		// �ж��û�����ĵ����Ƿ���wordList��
 		bool = Dictionary.getInstance().contains(letterPosition, input);
 
 		if (bool) {
 			// set the firstWordIndex using HashTable in
-			// TxtFileParser()
+			// TxtFileParser(�洢�˵���Ӣ�����ڴʿ���λ�õ�һһ��Ӧ)
 			firstWordIndex = TxtFileParser.getInstance().getIndexHash()
 					.get(input);
+			System.out.println("firstWordIndex from FirstWordSettingController:"+firstWordIndex);
+			System.out.println("input word from FirstWordSettingController:"+input);
 			return 0;
 		} else {
 			firstWordIndex = 0;
@@ -61,19 +63,8 @@ public class FirstWordSettingController {
 	public String[] stringMatching(String input, int letterPosition) {
 		// use TreeSet to do the string matching
 		// get the word
-		
-		String[] matchResult = new String[3];
-		
-		//if input is "" or null
-		if(input == null || input.equals("")){
-			matchResult[0] = "";
-			matchResult[1] = "";
-			matchResult[2] = "";
-			return matchResult;
-		}
-		
 		String lowerInput = input.toLowerCase();
-		
+		String[] matchResult = new String[3];
 		if ((lowerInput.charAt(0) - 'a') != letterPosition) {
 			matchResult[0] = "";
 			matchResult[1] = "";
@@ -99,7 +90,7 @@ public class FirstWordSettingController {
 		}
 		return matchResult;
 	}
-	
+
 	public int getFirstWordIndex() {
 		return firstWordIndex;
 	}
