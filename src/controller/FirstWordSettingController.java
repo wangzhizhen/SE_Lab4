@@ -62,6 +62,12 @@ public class FirstWordSettingController {
 		// use TreeSet to do the string matching
 		// get the word
 		String[] matchResult = new String[3];
+		if(input == null || input.equals("")){
+			matchResult[0] = "";
+			matchResult[1] = "";
+			matchResult[2] = "";
+			return matchResult;
+		}
 		if ((input.charAt(0) - 97) != letterPosition) {
 			matchResult[0] = "";
 			matchResult[1] = "";
