@@ -66,10 +66,6 @@ public class FirstWordSettingController {
 	public String[] stringMatching(String input, int letterPosition) {
 		// use TreeSet to do the string matching
 		// get the word
-<<<<<<< HEAD
-		String lowerInput = input.toLowerCase();
-		String[] matchResult = new String[3];
-=======
 		
 		String[] matchResult = new String[3];
 		
@@ -81,7 +77,7 @@ public class FirstWordSettingController {
 			return matchResult;
 		}
 		String lowerInput = input.toLowerCase();
->>>>>>> origin/controller_branch
+
 		if ((lowerInput.charAt(0) - 'a') != letterPosition) {
 			matchResult[0] = "";
 			matchResult[1] = "";
@@ -108,10 +104,6 @@ public class FirstWordSettingController {
 		return matchResult;
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/controller_branch
 	public int getFirstWordIndex() {
 		return firstWordIndex;
 	}
