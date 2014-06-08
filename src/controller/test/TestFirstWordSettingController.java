@@ -93,7 +93,7 @@ public class TestFirstWordSettingController {
 		assertArrayEquals(expected, testSetStringMatchingWithParam(0,""));
 		
 		//param is (0, null)
-		expected= new String[]{"", "",""};
+		expected= new String[]{"", "",""};		
 		assertArrayEquals(expected, testSetStringMatchingWithParam(0,null));
 		
 		

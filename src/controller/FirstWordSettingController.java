@@ -61,14 +61,20 @@ public class FirstWordSettingController {
 	public String[] stringMatching(String input, int letterPosition) {
 		// use TreeSet to do the string matching
 		// get the word
+		
 		String[] matchResult = new String[3];
+		
+		//if input is "" or null
 		if(input == null || input.equals("")){
 			matchResult[0] = "";
 			matchResult[1] = "";
 			matchResult[2] = "";
 			return matchResult;
 		}
-		if ((input.charAt(0) - 97) != letterPosition) {
+		
+		String lowerInput = input.toLowerCase();
+		
+		if ((lowerInput.charAt(0) - 'a') != letterPosition) {
 			matchResult[0] = "";
 			matchResult[1] = "";
 			matchResult[2] = "";
@@ -79,11 +85,21 @@ public class FirstWordSettingController {
 			matchResult[0] = dictionaryTree.ceiling(input);
 			matchResult[1] = dictionaryTree.higher(matchResult[0]);
 			matchResult[2] = dictionaryTree.higher(matchResult[1]);
+			if((matchResult[0].charAt(0)-'a')!=letterPosition){
+				matchResult[0] = "";
+			}
+			if((matchResult[1].charAt(0)-'a')!=letterPosition){
+				matchResult[1] = "";
+			}
+			if((matchResult[2].charAt(0)-'a')!=letterPosition){
+				matchResult[2] = "";
+			}
+			
 			// Iterator it =dictionaryTree.iterator();
 		}
 		return matchResult;
 	}
-
+	
 	public int getFirstWordIndex() {
 		return firstWordIndex;
 	}
