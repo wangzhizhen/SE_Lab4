@@ -10,13 +10,13 @@ public class NormalQuizController implements IQuizController {
 
 	// implement as singleton
 	private static NormalQuizController instance = new NormalQuizController();
-	Quiz quiz;
+	private Quiz quiz;
 	private int letterPosition;
 	private int firstWordIndex;
 	private int num;
 	private int curWordIndex = 0;
 	private int compareResult = 0;
-	private int saveToken=0;
+//	private int saveToken=0;
 
 	private NormalQuizController() {
 

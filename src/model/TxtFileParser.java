@@ -13,9 +13,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.TreeSet;
 
-
 public class TxtFileParser implements IDictionaryParser{
-	Hashtable<String,Integer> indexHash = new Hashtable<String,Integer>();
+	private Hashtable<String,Integer> indexHash = new Hashtable<String,Integer>();
 	
 	private TxtFileParser(){
 		
@@ -35,66 +34,69 @@ public class TxtFileParser implements IDictionaryParser{
     
     @Override
 	public IDictionary getDictionary() {
+		// TODO Auto-generated method stub
 		return Dictionary.getInstance();
 	}
-
-	@Override
+    
+    @Override
 	public void setDictionary(IDictionary dictionary) {
-
+		// TODO Auto-generated method stub
+		
 	}
-
-	public int readFromTxtFile(String dicfilename) {
-		char[] firstCharArr = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
-				'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-				'v', 'w', 'x', 'y', 'z' };
-		int index = 0;
-		int hashIndex = 0;
-		int num = 0;
-		TreeSet<String> dictionaryTree = new TreeSet<String>();
-		String[] wordArr = new String[2];
-		ArrayList<Word> wordList = new ArrayList<Word>();
-		WordList[] IDictionary = new WordList[26];
-		try {
-			String line;
-			BufferedReader bufferedReader = new BufferedReader(
-					new InputStreamReader(new FileInputStream(dicfilename),
-							"GBK"));
-			// Read content from the txtfile line by line
-			while ((line = bufferedReader.readLine()) != null) {
-				// Separate the word and translation
+    
+    public int readFromTxtFile(String dicfilename){
+    	char[] firstCharArr = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    	int index = 0;
+    	int hashIndex = 0;
+    	int num = 0;
+    	TreeSet<String> dictionaryTree = new TreeSet<String>();
+    	String[] wordArr = new String[2];
+    	ArrayList<Word> wordList = new ArrayList<Word>();
+    	WordList[] IDictionary = new WordList[26];
+    	try {
+    		String line;
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(dicfilename),"GBK"));
+			//Read content from the txtfile line by line
+			while((line = bufferedReader.readLine())!=null){
+//				System.out.println(line);
+				//Separate the word and translation
 				wordArr = line.split("   ");
-				// New a word
-				Word word = new Word(wordArr[0], wordArr[1], 0);
+				//New a word
+				Word word = new Word(wordArr[0],wordArr[1],0);
 				dictionaryTree.add(wordArr[0]);
-				num++;
-				// Put the word and its index into the indexHash
-				if (wordArr[0].charAt(0) == firstCharArr[index]) {
+				num ++;
+				//Put the word and its index into the indexHash
+//				System.out.println(wordArr[1]);
+				if(wordArr[0].charAt(0) == firstCharArr[index]){
 					wordList.add(word);
-					System.out.println("$$$$$$$$$$$"+wordArr[0]+"    "+hashIndex);
+//					System.out.println("$$$$$$$$$$$"+wordArr[0]+"    "+hashIndex);
 					indexHash.put(wordArr[0], hashIndex);
-					hashIndex++;
-				} else {
-					WordList wl = new WordList(
-							readLastTimeIndexFile(index + 1), wordList);
+					hashIndex ++;
+				}
+				else{
+					WordList wl = new WordList(readLastTimeIndexFile(index,"file/LastTimeIndexFile.txt"),wordList);
 					IDictionary[index] = wl;
 					wordList.clear();
 					wordList.add(word);
+//					System.out.println(hashIndex);
 					hashIndex = 0;
 					indexHash.put(wordArr[0], hashIndex);
 					hashIndex ++;
 					index ++;
 				}
 			}
-			WordList wl = new WordList(readLastTimeIndexFile(index + 1),
-					wordList);
+			WordList wl = new WordList(readLastTimeIndexFile(index,"file/LastTimeIndexFile.txt"),wordList);
 			IDictionary[index] = wl;
+//			System.out.println(hashIndex);
 			bufferedReader.close();
 			Dictionary dictionary = Dictionary.getInstance();
 			dictionary.setWordListArray(IDictionary);
 			dictionary.setDictionaryTree(dictionaryTree);
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
     	return num;
@@ -103,79 +105,77 @@ public class TxtFileParser implements IDictionaryParser{
     public void initTheStateFile(int num, String filename){
 		File file = new File(filename);
 		try {
-			if (!file.exists()) {
+			if(!file.exists()){
 				file.createNewFile();
-				// Construct the BufferedWriter object
-				BufferedWriter bufferedWriter = new BufferedWriter(
-						new FileWriter(filename));
-				// Start writing to the output stream
-				for (int i = 0; i < num; i++) {
+				//Construct the BufferedWriter object
+				BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
+				//Start writing to the output stream
+				System.out.println("*******"+indexHash.size());
+				for(int i = 0; i < num; i ++){
 					bufferedWriter.write("0");
 					bufferedWriter.newLine();
 				}
-				// Close the output stream
+				//Close the output stream
 				bufferedWriter.close();
-			} 
-//			 {
-				BufferedReader bufferedReader = new BufferedReader(
-						new FileReader(filename));
+			}
+			else{
+				BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
 				int state = 0;
-				for (int i = 0; i < 26; i++) {
-					ArrayList<Word> wordArray = Dictionary.getInstance()
-							.getWordListArray()[i].getWordArray();
+				for(int i = 0;i < 26; i ++){
+					ArrayList<Word> wordArray = Dictionary.getInstance().getWordListArray()[i].getWordArray();
 					int len = wordArray.size();
-					for (int j = 0; j < len; j++) {
+					for(int j = 0; j < len; j ++){
 						state = Integer.parseInt(bufferedReader.readLine());
-						Dictionary.getInstance()
-						.getWordListArray()[i].getWordArray().get(j).setState(state);
-//						System.out.println(wordArray.get(0).getState());
+						wordArray.get(j).setState(state);
 					}
-
+					
 				}
 				bufferedReader.close();
-//			}
+			}
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+    }
 
-	}
-
-	public int[] getStateStatistics(int letterPosition) {
+	public int[] getStateStatistics(int letterPosition){
 		int notY = 0;
 		int wrong = 0;
 		int correct = 0;
 		int state = 0;
-		if (letterPosition >= 0 && letterPosition < 26) {
+		if(letterPosition >= 0 && letterPosition < 26){
 			WordList wordList = Dictionary.getInstance().getWordListArray()[letterPosition];
 			ArrayList<Word> wordArray = wordList.getWordArray();
 			int len = wordArray.size();
-			for (int i = 0; i < len; i++) {
+			for(int i = 0; i < len; i ++){
 				state = wordArray.get(i).getState();
-				if (state == 0)
-					notY++;
-				else if (state == 1)
-					wrong++;
-				else
-					correct++;
+				if(state == 0)
+					notY ++;
+				else if(state == 1)
+					wrong  ++;
+				else 
+					correct ++;
 			}
-
-		} else if (letterPosition == 26) {
-			for (int i = 0; i < 26; i++) {
+			
+		}
+		else if(letterPosition == 26){
+			for(int i = 0; i < 26; i ++){
 				WordList wordList = Dictionary.getInstance().getWordListArray()[i];
 				ArrayList<Word> wordArray = wordList.getWordArray();
 				int len = wordArray.size();
-				for (int j = 0; j < len; j++) {
+				for(int j = 0; j < len; j ++){
 					state = wordArray.get(j).getState();
-					if (state == 0)
-						notY++;
-					else if (state == 1)
-						wrong++;
-					else
-						correct++;
+					if(state == 0)
+						notY ++;
+					else if(state == 1)
+						wrong  ++;
+					else 
+						correct ++;
 				}
 			}
 		}
-		int[] stateArr = { notY + wrong + correct, wrong + correct, correct };
+		int[] stateArr = {notY+wrong+correct,wrong+correct,correct};
 		return stateArr;
 	}
 	
@@ -239,103 +239,109 @@ public class TxtFileParser implements IDictionaryParser{
 	}
 
 
+	
 	public void modifyTheStateFile(String filename){
 		int state = 0;
 		File file = new File(filename);  
 		try {
-			// Delete the old file
-			if (file.exists())
-				file.delete();
-			// Create a new file
-			if (!file.exists())
+			//Delete the old file
+			if(file.exists())
+			    file.delete();
+			//Create a new file
+			if(!file.exists())
 				file.createNewFile();
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(
-					filename));
-			// Rewrite the state file according to dictionary
-			for (int i = 0; i < 26; i++) {
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
+			//Rewrite the state file according to dictionary
+			for(int i = 0; i < 26; i ++){
 				WordList wordList = Dictionary.getInstance().getWordListArray()[i];
 				ArrayList<Word> wordArray = wordList.getWordArray();
 				int len = wordArray.size();
-				for (int j = 0; j < len; j++) {
+				for(int j = 0; j < len; j ++){
 					state = wordArray.get(j).getState();
-					bufferedWriter.write(state + "");
+					bufferedWriter.write(state+"");
 					bufferedWriter.newLine();
 				}
 			}
 			bufferedWriter.close();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 	}
 
-	public Hashtable<String, Integer> getIndexHash() {
+	public Hashtable<String, Integer> getIndexHash(){
 		return indexHash;
 	}
-
-	public int readLastTimeIndexFile(int letterPosition) {
+	
+	public int readLastTimeIndexFile(int letterPosition,String lastTimeIndexFile){
 		int index = 0;
-		String lastTimeIndexFile = "file/LastTimeIndexFile.txt";
-		// File file = new File(lastTimeIndexFile);
 		try {
-			if (letterPosition < 26) {
-				BufferedReader bufferedReader = new BufferedReader(
-						new FileReader(lastTimeIndexFile));
-				for (int i = 0; i < letterPosition; i++) {
-					bufferedReader.readLine();
-				}
-				index = Integer.parseInt(bufferedReader.readLine());
-				bufferedReader.close();
+			if(letterPosition < 26){
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(lastTimeIndexFile));
+			for(int i = 0; i < letterPosition; i ++){
+				bufferedReader.readLine();
 			}
-
+			index = Integer.parseInt(bufferedReader.readLine());
+			bufferedReader.close();
+		}
+			
 		} catch (FileNotFoundException e) {
-
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return index;
 	}
-
-	public void setLastTimeIndexFile(int letterPosition, int currentIndex) {
-		String filename = "file/LastTimeIndexFile.txt";
+	
+	public void setLastTimeIndexFile(int letterPosition, int currentIndex, String filename){
 		try {
-			FileReader fileReader = new FileReader(filename);
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
 			String index;
 			String string = "";
-			for (int i = 0; i < 25; i++) {
-				if (i != letterPosition) {
+			for(int i = 0; i < 25; i ++){
+				if(i != letterPosition){
 					index = bufferedReader.readLine();
 					string += index;
 					string += "\r\n";
-				} else {
+				}
+				else{
 					bufferedReader.readLine();
 					string += currentIndex;
 					string += "\r\n";
 				}
 			}
-			index = bufferedReader.readLine();
-			string += index;
+			if(letterPosition != 25){
+				index = bufferedReader.readLine();
+				string += index;
+			}
+			else{
+				string += currentIndex;
+			}
 			bufferedReader.close();
 			File file = new File(filename);
-			// Delete the old file
-			if (file.exists())
-				file.delete();
-			// Create a new file
-			if (!file.exists())
+			//Delete the old file
+			if(file.exists())
+			    file.delete();
+			//Create a new file
+			if(!file.exists())
 				file.createNewFile();
-			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(
-					filename));
+			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filename));
 			bufferedWriter.write(string);
 			bufferedWriter.close();
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 	}
 	
 	public void saveToAllFiles(Quiz quiz, int cur, String filename){
@@ -343,7 +349,10 @@ public class TxtFileParser implements IDictionaryParser{
 		int index = letterStr.indexOf(quiz.getWordAt(0).getEnglish().charAt(0));
 		updateTheState(quiz);
 		modifyTheStateFile(filename);
-		setLastTimeIndexFile(index, cur);
+		System.out.println("cur from TxtFileParser:"+cur);
+		
+		setLastTimeIndexFile(index, cur, "file/LastTimeIndexFile.txt");
 	}
-
+    
+    
 }

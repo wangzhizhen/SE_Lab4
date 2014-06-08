@@ -45,7 +45,7 @@ public class FirstWordSettingController {
 
 	public int setFromLastTime(int letterPosition) {
 		int lastTimeIndex = TxtFileParser.getInstance().readLastTimeIndexFile(
-				letterPosition);
+				letterPosition,"file/LastTimeIndexFile.txt");
 		System.out.println(Dictionary.getInstance().getWordListLengthAt(
 				letterPosition));
 		if (lastTimeIndex == Dictionary.getInstance().getWordListLengthAt(
@@ -54,7 +54,7 @@ public class FirstWordSettingController {
 			firstWordIndex = 0;
 			return 2;
 		} else if (lastTimeIndex == -1) {
-			// firstWordIndex = 0;//
+//			 firstWordIndex = 0;//
 			return -1;
 		} else {
 			firstWordIndex = lastTimeIndex;

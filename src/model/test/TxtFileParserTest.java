@@ -105,32 +105,32 @@ public class TxtFileParserTest {
 		wordArray25.add(new Word("yellow","a.黄色的",0));
 		wordArray26.add(new Word("zoo","n.动物园",0));
 		wordArray26.add(new Word("zone", "n.地带，区域，区", 0));
-		WordList wordList1 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(0),wordArray1);
-		WordList wordList2 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(1),wordArray2);
-		WordList wordList3 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(2),wordArray3);
-		WordList wordList4 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(3),wordArray4);
-		WordList wordList5 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(4),wordArray5);
-		WordList wordList6 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(5),wordArray6);
-		WordList wordList7 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(6),wordArray7);
-		WordList wordList8 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(7),wordArray8);
-		WordList wordList9 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(8),wordArray9);
-		WordList wordList10 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(9),wordArray10);
-		WordList wordList11 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(10),wordArray11);
-		WordList wordList12 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(11),wordArray12);
-		WordList wordList13 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(12),wordArray13);
-		WordList wordList14 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(13),wordArray14);
-		WordList wordList15 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(14),wordArray15);
-		WordList wordList16 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(15),wordArray16);
-		WordList wordList17 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(16),wordArray17);
-		WordList wordList18 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(17),wordArray18);
-		WordList wordList19 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(18),wordArray19);
-		WordList wordList20 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(19),wordArray20);
-		WordList wordList21 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(20),wordArray21);
-		WordList wordList22 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(21),wordArray22);
-		WordList wordList23 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(22),wordArray23);
-		WordList wordList24 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(23),wordArray24);
-		WordList wordList25 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(24),wordArray25);
-		WordList wordList26 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(25),wordArray26);
+		WordList wordList1 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(0,"file/LastTimeIndexFile1.txt"),wordArray1);
+		WordList wordList2 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(1,"file/LastTimeIndexFile1.txt"),wordArray2);
+		WordList wordList3 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(2,"file/LastTimeIndexFile1.txt"),wordArray3);
+		WordList wordList4 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(3,"file/LastTimeIndexFile1.txt"),wordArray4);
+		WordList wordList5 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(4,"file/LastTimeIndexFile1.txt"),wordArray5);
+		WordList wordList6 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(5,"file/LastTimeIndexFile1.txt"),wordArray6);
+		WordList wordList7 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(6,"file/LastTimeIndexFile1.txt"),wordArray7);
+		WordList wordList8 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(7,"file/LastTimeIndexFile1.txt"),wordArray8);
+		WordList wordList9 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(8,"file/LastTimeIndexFile1.txt"),wordArray9);
+		WordList wordList10 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(9,"file/LastTimeIndexFile1.txt"),wordArray10);
+		WordList wordList11 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(10,"file/LastTimeIndexFile1.txt"),wordArray11);
+		WordList wordList12 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(11,"file/LastTimeIndexFile1.txt"),wordArray12);
+		WordList wordList13 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(12,"file/LastTimeIndexFile1.txt"),wordArray13);
+		WordList wordList14 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(13,"file/LastTimeIndexFile1.txt"),wordArray14);
+		WordList wordList15 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(14,"file/LastTimeIndexFile1.txt"),wordArray15);
+		WordList wordList16 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(15,"file/LastTimeIndexFile1.txt"),wordArray16);
+		WordList wordList17 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(16,"file/LastTimeIndexFile1.txt"),wordArray17);
+		WordList wordList18 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(17,"file/LastTimeIndexFile1.txt"),wordArray18);
+		WordList wordList19 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(18,"file/LastTimeIndexFile1.txt"),wordArray19);
+		WordList wordList20 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(19,"file/LastTimeIndexFile1.txt"),wordArray20);
+		WordList wordList21 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(20,"file/LastTimeIndexFile1.txt"),wordArray21);
+		WordList wordList22 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(21,"file/LastTimeIndexFile1.txt"),wordArray22);
+		WordList wordList23 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(22,"file/LastTimeIndexFile1.txt"),wordArray23);
+		WordList wordList24 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(23,"file/LastTimeIndexFile1.txt"),wordArray24);
+		WordList wordList25 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(24,"file/LastTimeIndexFile1.txt"),wordArray25);
+		WordList wordList26 = new WordList(TxtFileParser.getInstance().readLastTimeIndexFile(25,"file/LastTimeIndexFile1.txt"),wordArray26);
 		wordListArray[0] = wordList1;
 		wordListArray[1] = wordList2;
 		wordListArray[2] = wordList3;
@@ -208,6 +208,12 @@ public class TxtFileParserTest {
 		assertEquals(10,intArr1[1]);
 		assertEquals(7,intArr1[2]);
 		
+		//Case 1--letterPosition = 26
+		int[] intArr2 = TxtFileParser.getInstance().getStateStatistics(26);
+		assertEquals(7989,intArr2[0]);
+		assertEquals(11,intArr2[1]);
+		assertEquals(8,intArr2[2]);
+		
 	}
 
 	@Test
@@ -259,14 +265,14 @@ public class TxtFileParserTest {
 
 	@Test
 	public void testReadLastTimeIndexFile() {
-		TxtFileParser.getInstance().setLastTimeIndexFile(0, 1);
-		assertEquals(1,TxtFileParser.getInstance().readLastTimeIndexFile(0));
+		TxtFileParser.getInstance().setLastTimeIndexFile(0, 1, "file/LastTimeIndexFile1.txt");
+		assertEquals(1,TxtFileParser.getInstance().readLastTimeIndexFile(0,"file/LastTimeIndexFile1.txt"));
 	}
 
 	@Test
 	public void testSetLastTimeIndexFile() {
-		TxtFileParser.getInstance().setLastTimeIndexFile(0, 300);
-		assertEquals(300,TxtFileParser.getInstance().readLastTimeIndexFile(0));
+		TxtFileParser.getInstance().setLastTimeIndexFile(0, 300, "file/LastTimeIndexFile1.txt");
+		assertEquals(300,TxtFileParser.getInstance().readLastTimeIndexFile(0,"file/LastTimeIndexFile1.txt"));
 	}
 
 	public boolean dicEquals(WordList[] wordListArray, Dictionary dictionary){

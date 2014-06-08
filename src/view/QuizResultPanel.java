@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 @SuppressWarnings("serial")
 public class QuizResultPanel extends JPanel {
 	private JTable table = new JTable();
-	private JLabel returnToButton = new JLabel(new ImageIcon(
+	private JLabel returnButton = new JLabel(new ImageIcon(
 			"icons/returnMainButton.png"));
 
 	public QuizResultPanel() {
@@ -71,7 +71,7 @@ public class QuizResultPanel extends JPanel {
 
 		// add buttons to buttonPanel
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 10));
-		buttonPanel.add(returnToButton);
+		buttonPanel.add(returnButton);
 	}
 
 	public void setData(String wordBankName, int totalWordNum,
@@ -108,7 +108,7 @@ public class QuizResultPanel extends JPanel {
 	}
 
 	public JLabel getReturnButton() {
-		return this.returnToButton;
+		return this.returnButton;
 	}
 
 	protected void paintComponent(Graphics g) {

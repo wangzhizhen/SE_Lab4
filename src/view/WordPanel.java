@@ -30,11 +30,12 @@ public class WordPanel extends JPanel {
 	private JRadioButton jrbInput = new JRadioButton();
 	private JRadioButton jrbLast = new JRadioButton();
 	private JTextField input = new JTextField();
-
+	
 	private boolean showNote = false;
-	private NoteWordLabel noteLabel1 = new NoteWordLabel();
-	private NoteWordLabel noteLabel2 = new NoteWordLabel();
-	private NoteWordLabel noteLabel3 = new NoteWordLabel();
+	private JLabel noteLabel1 = new JLabel();
+	private JLabel noteLabel2 = new JLabel();
+	private JLabel noteLabel3 = new JLabel();
+	
 	private String note1 = "";
 	private String note2 = "";
 	private String note3 = "";
@@ -147,6 +148,12 @@ public class WordPanel extends JPanel {
 		noteLabel1.setVisible(false);
 		noteLabel2.setVisible(false);
 		noteLabel3.setVisible(false);
+		noteLabel1.setFont(new Font("Microsoft YaHei", Font.PLAIN, 18));
+		noteLabel1.setForeground(Color.DARK_GRAY);
+		noteLabel2.setFont(new Font("Microsoft YaHei", Font.PLAIN, 18));
+		noteLabel2.setForeground(Color.DARK_GRAY);
+		noteLabel3.setFont(new Font("Microsoft YaHei", Font.PLAIN, 18));
+		noteLabel3.setForeground(Color.DARK_GRAY);
 
 		rightThirdPanel.setPreferredSize(new Dimension(0, 200));
 		rightPanel.add(rightThirdPanel, BorderLayout.SOUTH);
@@ -299,15 +306,15 @@ public class WordPanel extends JPanel {
 		repaint();
 	}
 
-	public NoteWordLabel getNoteLabel1() {
+	public JLabel getNoteLabel1() {
 		return noteLabel1;
 	}
 
-	public NoteWordLabel getNoteLabel2() {
+	public JLabel getNoteLabel2() {
 		return noteLabel2;
 	}
 
-	public NoteWordLabel getNoteLabel3() {
+	public JLabel getNoteLabel3() {
 		return noteLabel3;
 	}
 

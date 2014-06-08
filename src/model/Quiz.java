@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class Quiz {
-	private ArrayList<Word> quizList;
-	private int totalNum;
-	private int correctNum;
-	private int wrongNum;
+	ArrayList<Word> quizList;
+	int totalNum;
+	int correctNum;
+	int wrongNum;
 	
 	public Quiz(ArrayList<Word> quizList){
 		this.quizList = quizList;
@@ -21,7 +21,7 @@ public class Quiz {
 	}
 	
 	public void setCorrectNum(int cNum){
-		correctNum = cNum ;
+		this.correctNum = cNum;
 	}
 	
 	public int getWrongNum(){
@@ -29,7 +29,7 @@ public class Quiz {
 	}
 	
 	public void setWrongNum(int wNum){
-		wrongNum = wNum;
+		this.wrongNum = wNum;
 	}
 	
 	public int getTotalNum(){
@@ -37,7 +37,7 @@ public class Quiz {
 	}
 	
 	public void setTotalNum(int tNum){
-		totalNum = tNum;
+		this.totalNum = tNum;
 	}
 	
 	public Word getWordAt(int currentWordIndex){

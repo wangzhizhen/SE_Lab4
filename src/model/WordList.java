@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 
 public class WordList {
-	private int lastTimeIndex;
-	private ArrayList<Word> wordArray;
+	int lastTimeIndex;
+	ArrayList<Word> wordArray;
 	
 	public WordList(){
 		
@@ -31,5 +31,9 @@ public class WordList {
 	
 	public ArrayList<Word> getWordArray(){
 		return wordArray;
+	}
+	
+	public void setWordArray(ArrayList<Word> wordArray){
+		this.wordArray = wordArray;
 	}
 }

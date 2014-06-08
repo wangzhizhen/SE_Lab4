@@ -103,20 +103,20 @@ public class TestFirstWordSettingController {
 	@Test
 	public void testSetFromLastTime(){
 		//letterPosition is 0 play the game the first time
-		parser.setLastTimeIndexFile(0, -1);
+		parser.setLastTimeIndexFile(0, -1,"file/LastTimeIndexFile.txt");
 		testFromLastTimeWithParam(-1, 0, 0);
 		
 		//letterPosition is 0 The wordList has the last time index
-		parser.setLastTimeIndexFile(0, 0);
+		parser.setLastTimeIndexFile(0, 0,"file/LastTimeIndexFile.txt");
 		testFromLastTimeWithParam(0,0,0);
 
 		
 		//letterPosition is 0 The wordList has the last time index
-		parser.setLastTimeIndexFile(0, 5);
+		parser.setLastTimeIndexFile(0, 5,"file/LastTimeIndexFile.txt");
 		testFromLastTimeWithParam(0,5,0);
 		
 		//letterPosition is 0 The wordList have all been recited
-		parser.setLastTimeIndexFile(0, 562);
+		parser.setLastTimeIndexFile(0, 562,"file/LastTimeIndexFile.txt");
 		testFromLastTimeWithParam(2,0,0);
 				
 	}

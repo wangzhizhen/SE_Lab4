@@ -3,8 +3,9 @@ encoding//src/controller/ChartDataController.java=UTF-8
 encoding//src/controller/Controller.java=UTF-8
 encoding//src/controller/FirstWordSettingController.java=UTF-8
 encoding//src/controller/NumSettingController.java=UTF-8
+encoding//src/controller/test=GBK
+encoding//src/controller/test/TestController.java=GBK
 encoding//src/model/test=GBK
+encoding//src/model/test/DictionaryTest.java=UTF-8
 encoding//src/view=UTF-8
 encoding//src/view/MainFrame.java=UTF-8
-encoding//src/model/test/DictionaryTest.java=UTF-8
-

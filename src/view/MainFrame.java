@@ -354,7 +354,7 @@ public class MainFrame extends JFrame {
 
 			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
-				wordPanel.setInputString(e.getSource().toString().trim());
+				wordPanel.setInputString(wordPanel.getNoteLabel1().getText().trim());
 				wordPanel.hideNotes(3);
 			}
 		});
@@ -372,7 +372,7 @@ public class MainFrame extends JFrame {
 
 			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
-				wordPanel.setInputString(e.getSource().toString().trim());
+				wordPanel.setInputString(wordPanel.getNoteLabel2().getText().trim());
 				wordPanel.hideNotes(3);
 			}
 		});
@@ -390,7 +390,7 @@ public class MainFrame extends JFrame {
 
 			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
-				wordPanel.setInputString(e.getSource().toString().trim());
+				wordPanel.setInputString(wordPanel.getNoteLabel3().getText().trim());
 				wordPanel.hideNotes(3);
 			}
 		});

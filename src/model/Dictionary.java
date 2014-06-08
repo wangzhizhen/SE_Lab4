@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Dictionary implements IDictionary{
-	private WordList[] wordListArray = new WordList[26];
-	private TreeSet<String> dictionaryTree = new TreeSet<String>();
+	WordList[] wordListArray = new WordList[26];
+	TreeSet<String> dictionaryTree = new TreeSet<String>();
 	
 	private Dictionary(){
 		
@@ -69,7 +69,6 @@ public class Dictionary implements IDictionary{
 	public Word getWordAt(int letterPosition, int wordIndex){
 		return wordListArray[letterPosition].getWordArray().get(wordIndex);
 	}
-	
 	
 
 }
