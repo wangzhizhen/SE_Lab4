@@ -201,6 +201,8 @@ public class TxtFileParserTest {
 	public void testGetStateStatistics() {
 		int num1 = TxtFileParser.getInstance().readFromTxtFile("file/txtfile.txt");
 		TxtFileParser.getInstance().initTheStateFile(num1, "file/teststatefile3.txt");
+		
+		//Case 0--letterPosition >= 0 and letterPosition < 26
 		int[] intArr1 = TxtFileParser.getInstance().getStateStatistics(0);
 		assertEquals(562,intArr1[0]);
 		assertEquals(10,intArr1[1]);
