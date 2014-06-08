@@ -63,25 +63,16 @@ public class FirstWordSettingController {
 		// get the word
 		
 		String[] matchResult = new String[3];
-<<<<<<< HEAD
-=======
 		
 		//if input is "" or null
->>>>>>> origin/master
 		if(input == null || input.equals("")){
 			matchResult[0] = "";
 			matchResult[1] = "";
 			matchResult[2] = "";
 			return matchResult;
 		}
-<<<<<<< HEAD
-		if ((input.charAt(0) - 97) != letterPosition) {
-=======
-		
 		String lowerInput = input.toLowerCase();
-		
 		if ((lowerInput.charAt(0) - 'a') != letterPosition) {
->>>>>>> origin/master
 			matchResult[0] = "";
 			matchResult[1] = "";
 			matchResult[2] = "";
@@ -106,7 +97,8 @@ public class FirstWordSettingController {
 		}
 		return matchResult;
 	}
-	
+
+
 	public int getFirstWordIndex() {
 		return firstWordIndex;
 	}
