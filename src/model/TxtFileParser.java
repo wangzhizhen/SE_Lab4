@@ -82,11 +82,7 @@ public class TxtFileParser implements IDictionaryParser{
 					hashIndex = 0;
 					indexHash.put(wordArr[0], hashIndex);
 					hashIndex ++;
-<<<<<<< HEAD
-					index++;
-=======
 					index ++;
->>>>>>> model_branch
 				}
 			}
 			WordList wl = new WordList(readLastTimeIndexFile(index + 1),
@@ -100,22 +96,12 @@ public class TxtFileParser implements IDictionaryParser{
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-<<<<<<< HEAD
-		}
-		return num;
-	}
-
-	public void initTheStateFile(int num,String filename) {
-		File file = new File(filename);
-
-=======
 		}  
     	return num;
     }
 	
     public void initTheStateFile(int num, String filename){
 		File file = new File(filename);
->>>>>>> model_branch
 		try {
 			if (!file.exists()) {
 				file.createNewFile();
@@ -192,11 +178,7 @@ public class TxtFileParser implements IDictionaryParser{
 		int[] stateArr = { notY + wrong + correct, wrong + correct, correct };
 		return stateArr;
 	}
-<<<<<<< HEAD
-
-=======
 	
->>>>>>> model_branch
 	public void updateTheState(Quiz quiz) {
 		ArrayList<Word> quizList = quiz.getQuizList();
 		int size = quizList.size();
@@ -256,17 +238,10 @@ public class TxtFileParser implements IDictionaryParser{
 		}
 	}
 
-<<<<<<< HEAD
-	public void modifyTheStateFile(String filename) {
-		int state = 0;
-//		String filename = "file/statefile.txt";
-		File file = new File(filename);
-=======
 
 	public void modifyTheStateFile(String filename){
 		int state = 0;
 		File file = new File(filename);  
->>>>>>> model_branch
 		try {
 			// Delete the old file
 			if (file.exists())
@@ -362,13 +337,8 @@ public class TxtFileParser implements IDictionaryParser{
 		}
 
 	}
-<<<<<<< HEAD
-
-	public void saveToAllFiles(Quiz quiz, int cur, String filename) {
-=======
 	
 	public void saveToAllFiles(Quiz quiz, int cur, String filename){
->>>>>>> model_branch
 		String letterStr = "abcdefghijklmnopqrstuvwxyz";
 		int index = letterStr.indexOf(quiz.getWordAt(0).getEnglish().charAt(0));
 		updateTheState(quiz);

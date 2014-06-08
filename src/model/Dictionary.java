@@ -70,16 +70,6 @@ public class Dictionary implements IDictionary{
 		return wordListArray[letterPosition].getWordArray().get(wordIndex);
 	}
 	
-	public boolean contains(int letterPosition, String input){
-		ArrayList<Word> wordList = wordListArray[letterPosition].getWordArray();
-		int len = wordList.size();
-		for(int i = 0; i < len; i ++){
-			String English = wordList.get(i).getEnglish();
-			if(English.equals(input)){
-				return true;
-			}
-		}
-		return false;
-	}
+	
 
 }

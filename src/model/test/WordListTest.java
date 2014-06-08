@@ -29,10 +29,10 @@ public class WordListTest {
 		wordArray1.add(word2);
 		wordArray2.add(word1);
 		wordArray2.add(word3);
-		wordList1.setWordArray(wordArray1);
+//		wordList1.setWordArray(wordArray1);
 		wordList1.setWordAt(1, word3);
 		WordList wordList2 = new WordList();
-		wordList2.setWordArray(wordArray2);
+//		wordList2.setWordArray(wordArray2);
 		assertTrue(wordListEquals(wordList2,wordList1));
 	}
 	
