@@ -1,5 +1,5 @@
 /**
- * Test case for LetterPositionSettingController;
+ * 
  */
 package controller.test;
 

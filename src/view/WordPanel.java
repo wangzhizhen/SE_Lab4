@@ -88,6 +88,7 @@ public class WordPanel extends JPanel {
 		leftFirstPanel.setOpaque(false);
 		leftFirstPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		jrbFirst.setText("从第一个单词开始");
+		jrbFirst.setOpaque(false);
 		jrbFirst.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
 		jrbFirst.setForeground(Color.DARK_GRAY);
 		group.add(jrbFirst);
@@ -99,9 +100,11 @@ public class WordPanel extends JPanel {
 		leftSecondPanel.setOpaque(false);
 		leftSecondPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		jrbLast.setText("从上一次结束处开始");
+		jrbLast.setOpaque(false);
 		jrbLast.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
 		jrbLast.setForeground(Color.DARK_GRAY);
 		jrbInput.setText("输入起始单词");
+		jrbLast.setOpaque(false);
 		jrbInput.setFont(new Font("Microsoft YaHei", Font.PLAIN, 20));
 		jrbInput.setForeground(Color.DARK_GRAY);
 		group.add(jrbInput);
@@ -123,7 +126,6 @@ public class WordPanel extends JPanel {
 
 		JPanel rightFirstPanel = new JPanel();
 		rightFirstPanel.setOpaque(false);
-		rightFirstPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		rightFirstPanel.add(FirstWord);
 		rightFirstPanel.setPreferredSize(new Dimension(0, 75));
 		rightPanel.add(rightFirstPanel, BorderLayout.NORTH);
@@ -132,7 +134,6 @@ public class WordPanel extends JPanel {
 		rightSecondPanel.setOpaque(false);
 		rightSecondPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		rightPanel.add(rightSecondPanel, BorderLayout.CENTER);
-
 		JPanel rightThirdPanel = new JPanel();
 		rightThirdPanel.setOpaque(false);
 		rightThirdPanel.setLayout(new GridLayout(4, 1));
@@ -233,12 +234,40 @@ public class WordPanel extends JPanel {
 
 		this.showNote = true;
 		// dynamically obtained from the note word
-		noteLabel1.setText(note1);
-		noteLabel2.setText(note2);
-		noteLabel3.setText(note3);
-		noteLabel1.setVisible(showNote);
-		noteLabel2.setVisible(showNote);
-		noteLabel3.setVisible(showNote);
+		if(n1.equals("")){
+			noteLabel1.setText("");
+			noteLabel1.setVisible(false);
+		}
+		else{
+			System.out.println("note1:"+note1);
+			noteLabel1.setText(note1);
+			noteLabel1.setVisible(true);
+		}
+		if(n2.equals("")){
+			noteLabel2.setText("");
+			noteLabel2.setVisible(false);
+		}
+		else{
+			System.out.println("note2:"+note2);
+			noteLabel2.setText(note2);
+			noteLabel2.setVisible(true);
+		}
+		if(n3.equals("")){
+			noteLabel3.setText("");
+			noteLabel3.setVisible(false);
+		}
+		else{
+			System.out.println("note3:"+note3);
+			noteLabel3.setText(note3);
+			noteLabel3.setVisible(true);
+		}
+		
+//		noteLabel1.setText(note1);
+//		noteLabel2.setText(note2);
+//		noteLabel3.setText(note3);
+//		noteLabel1.setVisible(showNote);
+//		noteLabel2.setVisible(showNote);
+//		noteLabel3.setVisible(showNote);
 
 		repaint();
 	}

@@ -52,6 +52,7 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("WordMaster");
+		setVisible(true);
 
 	}
 
@@ -252,6 +253,9 @@ public class MainFrame extends JFrame {
 
 			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
+				
+//				System.out.println("firstWordIndex from MainFrame:");
+				
 				int result = controller.setFirstWordIndex(
 						wordPanel.getOption(), choosePanel.getLetterPosition(),
 						wordPanel.getTextField().getText());
@@ -301,27 +305,6 @@ public class MainFrame extends JFrame {
 				else {
 					String[] notes = controller.stringMatching(wordPanel
 							.getTextField().getText());
-					String[] notesTemp1 = controller.stringMatching(notes[0]);
-					if (notesTemp1[0].equals("")) {
-						wordPanel.showNotes(notesTemp1[0], notesTemp1[1],
-								notesTemp1[2]);
-						wordPanel.hideNotes(3);
-						return;
-					}
-					String[] notesTemp2 = controller.stringMatching(notes[1]);
-					if (notesTemp2[0].equals("")) {
-						wordPanel.showNotes(notes[0], notesTemp2[1],
-								notesTemp2[2]);
-						wordPanel.hideNotes(2);
-						return;
-					}
-					String[] notesTemp3 = controller.stringMatching(notes[2]);
-					if (notesTemp3[0].equals("")) {
-						wordPanel.showNotes(notes[0], notes[1], notesTemp3[2]);
-						wordPanel.hideNotes(1);
-						return;
-					}
-
 					if (notes[0].equals("")) {
 						wordPanel.hideNotes(3);
 					} else {
@@ -467,7 +450,7 @@ public class MainFrame extends JFrame {
 					String chinese = controller.normalQuizStart(
 							controller.getLetterPosition(),
 							controller.getFirstWordIndex(), controller.getNum());
-
+					System.out.println("");
 					System.out.println("当前单词" + chinese);
 					playPanel.setChinese(chinese);
 					// switch panel
@@ -485,6 +468,7 @@ public class MainFrame extends JFrame {
 					remove(numPanel);
 				} else if (result == 2) {
 					JOptionPane.showMessageDialog(null, "输入不合法");
+					numPanel.getTextField().setText("");
 				}
 			}
 		});
@@ -514,6 +498,7 @@ public class MainFrame extends JFrame {
 							controller.getPreviousWordEnglish(), compareResult);
 					playPanel.getNextButton().removeMouseListener(
 							playPanel.getNextButton().getMouseListeners()[0]);
+					playPanel.getSaveAndExitButton().removeMouseListener(playPanel.getSaveAndExitButton().getMouseListeners()[0]);
 					Timer timer = new Timer();
 					timer.schedule(new TimerTask() {
 						@Override
@@ -588,10 +573,13 @@ public class MainFrame extends JFrame {
 				playPanel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 
-			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
-				controller.normalQuizStop();
-				System.exit(0);
+				int n = JOptionPane.showConfirmDialog(null, "确定退出吗？好想陪你一起背！",
+						"系统信息", JOptionPane.OK_CANCEL_OPTION);
+				if (n == JOptionPane.OK_OPTION) {
+					controller.normalQuizStop();
+					System.exit(0);
+				}
 			}
 		});
 	}

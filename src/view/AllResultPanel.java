@@ -94,7 +94,7 @@ public class AllResultPanel extends JPanel {
 		table.setRowHeight(28);
 		table.setGridColor(Color.BLACK);
 		table.setEnabled(false);
-		tablePane.setPreferredSize(new Dimension(678, 58));
+		tablePane.setPreferredSize(new Dimension(654, 58));
 		tablePanel.add(tablePane);
 
 		// add charts to chart panel
@@ -204,6 +204,12 @@ public class AllResultPanel extends JPanel {
 
 		DefaultTableModel model = new DefaultTableModel(arr, columns);
 		table.setModel(model);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		table.getColumn("全部词库单词总数").setMinWidth(150);
+		table.getColumn("已背单词数").setMinWidth(125);
+		table.getColumn("正确单词数").setMinWidth(125);
+		table.getColumn("错误单词数").setMinWidth(125);
+		table.getColumn("正确率").setMinWidth(125);
 		// update the table
 		table.invalidate();
 
