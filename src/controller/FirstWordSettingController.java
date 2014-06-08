@@ -25,12 +25,12 @@ public class FirstWordSettingController {
 
 	public int setFromUserInput(int letterPosition, String input) {
 		boolean bool = true;
-		// �ж��û�����ĵ����Ƿ���wordList��
+		// check if the input is in the dictionary
 		bool = Dictionary.getInstance().contains(letterPosition, input);
 
 		if (bool) {
 			// set the firstWordIndex using HashTable in
-			// TxtFileParser(�洢�˵���Ӣ�����ڴʿ���λ�õ�һһ��Ӧ)
+			// TxtFileParser()
 			firstWordIndex = TxtFileParser.getInstance().getIndexHash()
 					.get(input);
 			System.out.println("firstWordIndex from FirstWordSettingController:"+firstWordIndex);

@@ -28,7 +28,7 @@ public class ChartDataController {
 
 	public double getCorrectRate(int letterPosition) {
 		double correctRate = 0;
-		// �����������Ϊ0ʱ
+		// check if doneNum is zero
 		if (getDoneNum(letterPosition) == 0) {
 			correctRate = 0;
 		} else {
