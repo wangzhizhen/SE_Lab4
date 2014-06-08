@@ -13,26 +13,27 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.TreeSet;
 
-public class TxtFileParser implements IDictionaryParser {
-	private Hashtable<String, Integer> indexHash = new Hashtable<String, Integer>();
 
-	private TxtFileParser() {
+public class TxtFileParser implements IDictionaryParser{
+	Hashtable<String,Integer> indexHash = new Hashtable<String,Integer>();
+	
+	private TxtFileParser(){
+		
 	}
 
-	private static final TxtFileParser instance = new TxtFileParser(
-			);
+	private static final TxtFileParser instance = new TxtFileParser();
 
-	public static TxtFileParser getInstance() {
-		return instance;
-	}
-
-	public void init(String filename) {
-		int num = readFromTxtFile(filename);
-		initTheStateFile(num,"file/statefile.txt");
-
-	}
-
-	@Override
+    public static TxtFileParser getInstance() {
+    	return  instance;
+    } 
+    
+    public void init(String filename){
+    	int num = readFromTxtFile(filename);
+    	initTheStateFile(num, "file/statefile");
+    	
+    }
+    
+    @Override
 	public IDictionary getDictionary() {
 		return Dictionary.getInstance();
 	}
@@ -69,6 +70,7 @@ public class TxtFileParser implements IDictionaryParser {
 				// Put the word and its index into the indexHash
 				if (wordArr[0].charAt(0) == firstCharArr[index]) {
 					wordList.add(word);
+					System.out.println("$$$$$$$$$$$"+wordArr[0]+"    "+hashIndex);
 					indexHash.put(wordArr[0], hashIndex);
 					hashIndex++;
 				} else {
@@ -80,7 +82,11 @@ public class TxtFileParser implements IDictionaryParser {
 					hashIndex = 0;
 					indexHash.put(wordArr[0], hashIndex);
 					hashIndex ++;
+<<<<<<< HEAD
 					index++;
+=======
+					index ++;
+>>>>>>> model_branch
 				}
 			}
 			WordList wl = new WordList(readLastTimeIndexFile(index + 1),
@@ -94,6 +100,7 @@ public class TxtFileParser implements IDictionaryParser {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+<<<<<<< HEAD
 		}
 		return num;
 	}
@@ -101,6 +108,14 @@ public class TxtFileParser implements IDictionaryParser {
 	public void initTheStateFile(int num,String filename) {
 		File file = new File(filename);
 
+=======
+		}  
+    	return num;
+    }
+	
+    public void initTheStateFile(int num, String filename){
+		File file = new File(filename);
+>>>>>>> model_branch
 		try {
 			if (!file.exists()) {
 				file.createNewFile();
@@ -177,7 +192,11 @@ public class TxtFileParser implements IDictionaryParser {
 		int[] stateArr = { notY + wrong + correct, wrong + correct, correct };
 		return stateArr;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> model_branch
 	public void updateTheState(Quiz quiz) {
 		ArrayList<Word> quizList = quiz.getQuizList();
 		int size = quizList.size();
@@ -237,10 +256,17 @@ public class TxtFileParser implements IDictionaryParser {
 		}
 	}
 
+<<<<<<< HEAD
 	public void modifyTheStateFile(String filename) {
 		int state = 0;
 //		String filename = "file/statefile.txt";
 		File file = new File(filename);
+=======
+
+	public void modifyTheStateFile(String filename){
+		int state = 0;
+		File file = new File(filename);  
+>>>>>>> model_branch
 		try {
 			// Delete the old file
 			if (file.exists())
@@ -336,8 +362,13 @@ public class TxtFileParser implements IDictionaryParser {
 		}
 
 	}
+<<<<<<< HEAD
 
 	public void saveToAllFiles(Quiz quiz, int cur, String filename) {
+=======
+	
+	public void saveToAllFiles(Quiz quiz, int cur, String filename){
+>>>>>>> model_branch
 		String letterStr = "abcdefghijklmnopqrstuvwxyz";
 		int index = letterStr.indexOf(quiz.getWordAt(0).getEnglish().charAt(0));
 		updateTheState(quiz);

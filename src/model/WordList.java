@@ -24,8 +24,9 @@ public class WordList {
 		this.lastTimeIndex = lastTimeIndex;
 	}
 	
-	public void setWord(Word word){
-		wordArray.add(word);
+	public void setWordAt(int index,Word word){
+		if(index >= 0 && index < wordArray.size())
+			wordArray.set(index, word);
 	}
 	
 	public ArrayList<Word> getWordArray(){
