@@ -1,9 +1,9 @@
 package model;
 
 public class Word {
-	String english;
-	String chinese;
-	int state;//0-not yet;1-wrong;2-correct
+	private String english;
+	private String chinese;
+	private int state;//0-not yet;1-wrong;2-correct
 	
 	public Word(String english,String chinese,int state){
 		this.english = english;
