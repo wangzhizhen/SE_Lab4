@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Dictionary implements IDictionary{
-	WordList[] wordListArray = new WordList[26];
-	TreeSet<String> dictionaryTree = new TreeSet<String>();
+	private WordList[] wordListArray = new WordList[26];
+	private TreeSet<String> dictionaryTree = new TreeSet<String>();
 	
 	public Dictionary(){
 		

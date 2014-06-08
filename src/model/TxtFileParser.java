@@ -14,7 +14,7 @@ import java.util.Hashtable;
 import java.util.TreeSet;
 
 public class TxtFileParser implements IDictionaryParser {
-	Hashtable<String, Integer> indexHash = new Hashtable<String, Integer>();
+	private Hashtable<String, Integer> indexHash = new Hashtable<String, Integer>();
 
 	private TxtFileParser() {
 	}

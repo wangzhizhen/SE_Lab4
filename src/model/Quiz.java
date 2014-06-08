@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class Quiz {
-	ArrayList<Word> quizList;
-	int totalNum;
-	int correctNum;
-	int wrongNum;
+	private ArrayList<Word> quizList;
+	private int totalNum;
+	private int correctNum;
+	private int wrongNum;
 	
 	public Quiz(ArrayList<Word> quizList){
 		this.quizList = quizList;
