@@ -63,7 +63,7 @@ public class TestFirstWordSettingController {
 		//param is "blackboard"
 		pos = getLetterPosition("blackboard");
 		assertEquals(0,testSetFromUserInputWithParam(pos,"blackboard"));
-		assertEquals(177, controller.getFirstWordIndex());
+		assertEquals(178, controller.getFirstWordIndex());
 		
 		//param is "blackboard"
 		 pos = 2;
