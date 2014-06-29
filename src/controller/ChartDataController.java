@@ -1,7 +1,6 @@
 package controller;
 
 import model.TxtFileParser;
-import model.XmlFileParser;
 
 public class ChartDataController {
 
@@ -16,15 +15,15 @@ public class ChartDataController {
 	}
 
 	public int getAllNum(int letterPosition) {
-		return XmlFileParser.getInstance().getStateStatistics(letterPosition)[0];
+		return TxtFileParser.getInstance().getStateStatistics(letterPosition)[0];
 	}
 
 	public int getDoneNum(int letterPosition) {
-		return XmlFileParser.getInstance().getStateStatistics(letterPosition)[1];
+		return TxtFileParser.getInstance().getStateStatistics(letterPosition)[1];
 	}
 
 	public int getCorrectNum(int letterPosition) {
-		return XmlFileParser.getInstance().getStateStatistics(letterPosition)[2];
+		return TxtFileParser.getInstance().getStateStatistics(letterPosition)[2];
 	}
 
 	public double getCorrectRate(int letterPosition) {
