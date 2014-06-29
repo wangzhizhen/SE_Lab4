@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import model.Dictionary;
 import model.TxtFileParser;
+import model.XmlFileParser;
 import controller.Controller;
 
 @SuppressWarnings("serial")
@@ -33,7 +34,7 @@ public class MainFrame extends JFrame {
 	// private Dictionary dictionary = new ;
 
 	public MainFrame() {
-		 TxtFileParser.getInstance().init("file/txtfile.txt");
+		 XmlFileParser.getInstance().init("file/dictionary.xml");
 		// add Panels to the MainFrame
 		getContentPane().setLayout(cardLayout);
 		add(choosePanel, "choosePanel");
@@ -175,11 +176,11 @@ public class MainFrame extends JFrame {
 			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
 				// switch panel
-				allResultPanel.setData(controller.getAllNum(26),
-						controller.getDoneNum(26),
-						controller.getCorrectNum(26), controller.getDoneNum(26)
-								- controller.getCorrectNum(26),
-						controller.getCorrectRate(26));
+				allResultPanel.setData(controller.getAllNum(10),
+						controller.getDoneNum(10),
+						controller.getCorrectNum(10), controller.getDoneNum(10)
+								- controller.getCorrectNum(10),
+						controller.getCorrectRate(10));
 				add(allResultPanel, "allResultPanel");
 				remove(choosePanel);
 				pack();

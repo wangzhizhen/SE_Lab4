@@ -1,7 +1,7 @@
 package controller;
 
 import model.TxtFileParser;
-
+import model.XmlFileParser;
 
 public class ChartDataController {
 
@@ -10,21 +10,21 @@ public class ChartDataController {
 	int correctNum;
 	// implement as singleton
 	private static ChartDataController instance = new ChartDataController();
-//merge
+
 	private ChartDataController() {
 
 	}
 
 	public int getAllNum(int letterPosition) {
-		return TxtFileParser.getInstance().getStateStatistics(letterPosition)[0];
+		return XmlFileParser.getInstance().getStateStatistics(letterPosition)[0];
 	}
 
 	public int getDoneNum(int letterPosition) {
-		return TxtFileParser.getInstance().getStateStatistics(letterPosition)[1];
+		return XmlFileParser.getInstance().getStateStatistics(letterPosition)[1];
 	}
 
 	public int getCorrectNum(int letterPosition) {
-		return TxtFileParser.getInstance().getStateStatistics(letterPosition)[2];
+		return XmlFileParser.getInstance().getStateStatistics(letterPosition)[2];
 	}
 
 	public double getCorrectRate(int letterPosition) {
