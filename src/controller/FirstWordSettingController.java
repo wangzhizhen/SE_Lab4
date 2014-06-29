@@ -2,8 +2,8 @@ package controller;
 
 import java.util.TreeSet;
 
-import model.DictionaryForXml;
-import model.XmlFileParser;
+import model.Dictionary;
+import model.TxtFileParser;
 
 public class FirstWordSettingController {
 	private int firstWordIndex;
@@ -25,19 +25,16 @@ public class FirstWordSettingController {
 
 	public int setFromUserInput(int letterPosition, String input) {
 		boolean bool = true;
-		// check if the input is in the DictionaryForXml
-		bool = DictionaryForXml.getInstance().contains(letterPosition, input);
+		// check if the input is in the dictionary
+		bool = Dictionary.getInstance().contains(letterPosition, input);
 
 		if (bool) {
 			// set the firstWordIndex using HashTable in
-			// XmlFileParser()
-			firstWordIndex = XmlFileParser.getInstance()
-					.getIndexHashAt(letterPosition).get(input);
-			System.out
-					.println("firstWordIndex from FirstWordSettingController:"
-							+ firstWordIndex);
-			System.out.println("input word from FirstWordSettingController:"
-					+ input);
+			// TxtFileParser()
+			firstWordIndex = TxtFileParser.getInstance().getIndexHash()
+					.get(input);
+			System.out.println("firstWordIndex from FirstWordSettingController:"+firstWordIndex);
+			System.out.println("input word from FirstWordSettingController:"+input);
 			return 0;
 		} else {
 			firstWordIndex = 0;
@@ -47,17 +44,17 @@ public class FirstWordSettingController {
 	}
 
 	public int setFromLastTime(int letterPosition) {
-		int lastTimeIndex = XmlFileParser.getInstance().readLastTimeIndexFile(
-				letterPosition, "file/LastTimeIndexFile.txt");
-		System.out.println(DictionaryForXml.getInstance().getWordListLengthAt(
+		int lastTimeIndex = TxtFileParser.getInstance().readLastTimeIndexFile(
+				letterPosition,"file/LastTimeIndexFile.txt");
+		System.out.println(Dictionary.getInstance().getWordListLengthAt(
 				letterPosition));
-		if (lastTimeIndex == DictionaryForXml.getInstance()
-				.getWordListLengthAt(letterPosition)) {
-
+		if (lastTimeIndex == Dictionary.getInstance().getWordListLengthAt(
+				letterPosition)) {
+		
 			firstWordIndex = 0;
 			return 2;
 		} else if (lastTimeIndex == -1) {
-			// firstWordIndex = 0;//
+//			 firstWordIndex = 0;//
 			return -1;
 		} else {
 			firstWordIndex = lastTimeIndex;
@@ -69,11 +66,11 @@ public class FirstWordSettingController {
 	public String[] stringMatching(String input, int letterPosition) {
 		// use TreeSet to do the string matching
 		// get the word
-
+		
 		String[] matchResult = new String[3];
-
-		// if input is "" or null
-		if (input == null || input.equals("")) {
+		
+		//if input is "" or null
+		if(input == null || input.equals("")){
 			matchResult[0] = "";
 			matchResult[1] = "";
 			matchResult[2] = "";
@@ -86,14 +83,23 @@ public class FirstWordSettingController {
 			matchResult[1] = "";
 			matchResult[2] = "";
 		} else {
-			TreeSet<String> DictionaryForXmlTree = DictionaryForXml
-					.getInstance().getDictionaryTreeAt(letterPosition);
+			TreeSet<String> dictionaryTree = Dictionary.getInstance()
+					.getDictionaryTree();
 			// get three word closest to the input
-			matchResult[0] = DictionaryForXmlTree.ceiling(input);
-			matchResult[1] = DictionaryForXmlTree.higher(matchResult[0]);
-			matchResult[2] = DictionaryForXmlTree.higher(matchResult[1]);			
-
-			// Iterator it =DictionaryForXmlTree.iterator();
+			matchResult[0] = dictionaryTree.ceiling(input);
+			matchResult[1] = dictionaryTree.higher(matchResult[0]);
+			matchResult[2] = dictionaryTree.higher(matchResult[1]);
+			if((matchResult[0].charAt(0)-'a')!=letterPosition){
+				matchResult[0] = "";
+			}
+			if((matchResult[1].charAt(0)-'a')!=letterPosition){
+				matchResult[1] = "";
+			}
+			if((matchResult[2].charAt(0)-'a')!=letterPosition){
+				matchResult[2] = "";
+			}
+			
+			// Iterator it =dictionaryTree.iterator();
 		}
 		return matchResult;
 	}

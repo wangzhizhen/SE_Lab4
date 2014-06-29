@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class ChoosePanel extends JPanel {
-	private ArrayList<LetterButton> letters = new ArrayList<LetterButton>();
-	private int letterPosition = -1; // record the chosen letter(word bank)
+	private ArrayList<WordListButton> wordLists = new ArrayList<WordListButton>();
+	private int wordListPosition = -1; // record the chosen letter(word bank)
 	private JLabel startButton = new JLabel();
 	private JLabel resultButton = new JLabel();
 	private JLabel allResultButton = new JLabel();
@@ -23,12 +23,12 @@ public class ChoosePanel extends JPanel {
 	public ChoosePanel() {
 		// initialize the letter labels list
 		int i = 0;
-		for (i = 0; i < 26; i++) {
-			char c = (char) ('A' + i);
-			LetterButton letterLabel = new LetterButton(new ImageIcon("icons/"
-					+ c + ".png"));
+		for (i = 0; i < 10; i++) {
+//			char c = (char) ('A' + i);
+			WordListButton letterLabel = new WordListButton(new ImageIcon("icons/"
+					+ i + ".png"));
 			letterLabel.setLetterPosition(i);
-			letters.add(letterLabel);
+			wordLists.add(letterLabel);
 		}
 
 		// draw the bord
@@ -63,9 +63,9 @@ public class ChoosePanel extends JPanel {
 		add(buttonPanel, BorderLayout.SOUTH);
 
 		// add letters icons to centerPanel
-		letterPanel.setLayout(new GridLayout(4, 7));
+		letterPanel.setLayout(new GridLayout(2, 5));
 		int j = 0;
-		for (j = 0; j < 26; j++) {
+		for (j = 0; j < 10; j++) {
 			// put each letter into a oneLetterPanel, which contains the
 			// letterLabel and four paddings, in order to leave some space
 			// between letters
@@ -74,7 +74,7 @@ public class ChoosePanel extends JPanel {
 			oneLetterPanel.setOpaque(false);
 
 			// add the letter label into the oneLetterPanel
-			oneLetterPanel.add(letters.get(j), BorderLayout.CENTER);
+			oneLetterPanel.add(wordLists.get(j), BorderLayout.CENTER);
 
 			JLabel padding1 = new JLabel();
 			padding1.setOpaque(false);
@@ -124,27 +124,27 @@ public class ChoosePanel extends JPanel {
 		return this.allResultButton;
 	}
 
-	public int getLetterPosition() {
-		return this.letterPosition;
+	public int getWordListPosition() {
+		return this.wordListPosition;
 	}
 
-	public void setLetterPostion(int position) {
-		this.letterPosition = position;
+	public void setWordListPosition(int position) {
+		this.wordListPosition = position;
 
 		int j = 0;
-		for (j = 0; j < 26; j++) {
-			char c = (char) ('A' + j);
-			if (j != letterPosition)
-				letters.get(j).setIcon(new ImageIcon("icons/" + c + ".png"));
+		for (j = 0; j < 10; j++) {
+//			char c = (char) ('A' + j);
+			if (j != wordListPosition)
+				wordLists.get(j).setIcon(new ImageIcon("icons/" + j + ".png"));
 			else
-				letters.get(j).setIcon(new ImageIcon("icons/" + c + "_1.png"));
+				wordLists.get(j).setIcon(new ImageIcon("icons/" + j + "-1.png"));
 		}
 
 		repaint();
 	}
 
-	public ArrayList<LetterButton> getLetters() {
-		return this.letters;
+	public ArrayList<WordListButton> getLetters() {
+		return this.wordLists;
 	}
 
 	protected void paintComponent(Graphics g) {

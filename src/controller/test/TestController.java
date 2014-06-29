@@ -116,7 +116,7 @@ public class TestController extends TestCase {
 
 	/**
 	 * Test method for {@link controller.Controller#normalQuizStop()}.
-	 */	
+	 */
 	@Test
 	public void testNormalQuizStop() {
 		
