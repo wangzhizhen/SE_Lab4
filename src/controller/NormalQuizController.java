@@ -3,7 +3,6 @@ package controller;
 import java.util.ArrayList;
 
 import model.Dictionary;
-import model.DictionaryForXml;
 import model.Quiz;
 import model.Word;
 
@@ -35,7 +34,7 @@ public class NormalQuizController implements IQuizController {
 		int i = firstWordIndex;
 		ArrayList<Word> tempQuizList = new ArrayList<Word>();
 		for (; i < (num + firstWordIndex); i++) {
-			Word wordFromDictionaryWord =  DictionaryForXml.getInstance().getWordAt(letterPosition,
+			Word wordFromDictionaryWord =  Dictionary.getInstance().getWordAt(letterPosition,
 					i);
 			Word newWord = new Word(wordFromDictionaryWord.getEnglish(), wordFromDictionaryWord.getChinese(), 
 					wordFromDictionaryWord.getState());
@@ -84,12 +83,12 @@ public class NormalQuizController implements IQuizController {
 	@Override
 	public void stop(int cur) {
 		// save
-		SaveForXmlControllerFactory saveControllerFactory ;
+		SaveToTxtControllerFactory saveControllerFactory ;
 //		if(this.saveToken==0){
-		 saveControllerFactory = new SaveForXmlControllerFactory();
+		 saveControllerFactory = new SaveToTxtControllerFactory();
 //		}
 		ISaveController saveController = saveControllerFactory
-				.getSaveController(letterPosition);
+				.getSaveController();
 		saveController.updateDictionary(quiz);
 		saveController.save(quiz, cur);
 

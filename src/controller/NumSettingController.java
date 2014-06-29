@@ -1,7 +1,6 @@
 package controller;
 
 import model.Dictionary;
-import model.DictionaryForXml;
 
 
 
@@ -36,7 +35,7 @@ public class NumSettingController {
 	}
 	
 	public int getMaxNum(int letterPosition, int firstWordIndex){	
-		int length = DictionaryForXml.getInstance().getWordListLengthAt(letterPosition);
+		int length = Dictionary.getInstance().getWordListLengthAt(letterPosition);
 		maxNum = length-firstWordIndex;
 		return maxNum;	
 	} 
