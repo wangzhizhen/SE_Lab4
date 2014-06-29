@@ -1,6 +1,5 @@
 package controller;
 
-import model.TxtFileParser;
 import model.XmlFileParser;
 
 public class ChartDataController {
