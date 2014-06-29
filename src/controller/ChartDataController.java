@@ -9,7 +9,7 @@ public class ChartDataController {
 	int correctNum;
 	// implement as singleton
 	private static ChartDataController instance = new ChartDataController();
-
+//merge
 	private ChartDataController() {
 
 	}
