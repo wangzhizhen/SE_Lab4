@@ -4,10 +4,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class LetterButton extends JLabel {
+public class WordListButton extends JLabel {
 	private int letterPosition = -1;
 
-	public LetterButton(ImageIcon icon) {
+	public WordListButton(ImageIcon icon) {
 		super(icon);
 	}
 

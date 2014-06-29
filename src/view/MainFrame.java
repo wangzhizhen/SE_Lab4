@@ -70,7 +70,7 @@ public class MainFrame extends JFrame {
 			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
 				// switch panel
-				choosePanel.setLetterPostion(-1);
+				choosePanel.setWordListPosition(-1);
 				add(choosePanel, "choosePanel");
 				remove(quizResultPanel);
 				pack();
@@ -96,7 +96,7 @@ public class MainFrame extends JFrame {
 			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
 				// if no word bank is chosen, show a message
-				if (choosePanel.getLetterPosition() < 0) {
+				if (choosePanel.getWordListPosition() < 0) {
 					JOptionPane.showMessageDialog(null, "请通过鼠标点击字母选择词库！");
 				}
 				// otherwise switch the panel
@@ -104,7 +104,7 @@ public class MainFrame extends JFrame {
 					// Before switching the panel, give the selected letter,
 					// which indicates the word bank chose, to the controller
 					controller.setLetterPosition(choosePanel
-							.getLetterPosition());
+							.getWordListPosition());
 					// switch panel
 					wordPanel = new WordPanel();
 					initActsForWordPanel();
@@ -137,7 +137,7 @@ public class MainFrame extends JFrame {
 			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
 				// if no word bank is chosen, show a message
-				if (choosePanel.getLetterPosition() < 0) {
+				if (choosePanel.getWordListPosition() < 0) {
 					System.out.println();
 					JOptionPane.showMessageDialog(null, "请通过鼠标点击字母选择词库！");
 				}
@@ -190,7 +190,7 @@ public class MainFrame extends JFrame {
 
 		// add listeners to to letter buttons
 		int i = 0;
-		for (i = 0; i < 26; i++) {
+		for (i = 0; i < 10; i++) {
 			choosePanel.getLetters().get(i)
 					.addMouseListener(new MouseAdapter() {
 						// when mouse enter the letter, cursor becomes a hand
@@ -209,7 +209,7 @@ public class MainFrame extends JFrame {
 						public void mouseClicked(MouseEvent e) {
 							int letterPos = Integer.parseInt(e.getSource()
 									.toString());
-							choosePanel.setLetterPostion(letterPos);
+							choosePanel.setWordListPosition(letterPos);
 							controller.setLetterPosition(letterPos);
 						}
 					});
@@ -233,7 +233,7 @@ public class MainFrame extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				controller.setLetterPosition(-1);
 				wordPanel.setOption(WordPanel.STARTFROMFIRST);
-				choosePanel.setLetterPostion(-1);
+				choosePanel.setWordListPosition(-1);
 				add(choosePanel, "choosePanel");
 				remove(wordPanel);
 				cardLayout.show(getContentPane(), "choosePanel");
@@ -257,7 +257,7 @@ public class MainFrame extends JFrame {
 //				System.out.println("firstWordIndex from MainFrame:");
 				
 				int result = controller.setFirstWordIndex(
-						wordPanel.getOption(), choosePanel.getLetterPosition(),
+						wordPanel.getOption(), choosePanel.getWordListPosition(),
 						wordPanel.getTextField().getText());
 
 				// System.out.println("用户模式！！！！" + wordPanel.getOption());
@@ -601,7 +601,7 @@ public class MainFrame extends JFrame {
 					// when mouse clicked, change the panel
 					public void mouseClicked(MouseEvent e) {
 						// switch panel
-						choosePanel.setLetterPostion(-1);
+						choosePanel.setWordListPosition(-1);
 						add(choosePanel, "choosePanel");
 						remove(currentWordListResultPanel);
 						cardLayout.show(getContentPane(), "choosePanel");
@@ -624,7 +624,7 @@ public class MainFrame extends JFrame {
 			// when mouse clicked, change the panel
 			public void mouseClicked(MouseEvent e) {
 				// switch panel
-				choosePanel.setLetterPostion(-1);
+				choosePanel.setWordListPosition(-1);
 				add(choosePanel);
 				remove(allResultPanel);
 				pack();
