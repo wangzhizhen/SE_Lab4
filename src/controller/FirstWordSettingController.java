@@ -94,9 +94,12 @@ public class FirstWordSettingController {
 						matchResult[2]="";
 				}else {
 					matchResult[1] = "";
+					matchResult[2] = "";
 				}
 			}else{
 				matchResult[0] = "";
+				matchResult[1] = "";
+				matchResult[2] = "";
 			}
 
 			for(int i = 0;i<matchResult.length;i++){
