@@ -79,22 +79,34 @@ public class FirstWordSettingController {
 			matchResult[2] = "";
 			return matchResult;
 		}
-		String lowerInput = input.toLowerCase();
+//		String lowerInput = input.toLowerCase();
 
-		if ((lowerInput.charAt(0) - 'a') != letterPosition) {
-			matchResult[0] = "";
-			matchResult[1] = "";
-			matchResult[2] = "";
-		} else {
+	
 			TreeSet<String> DictionaryForXmlTree = DictionaryForXml
 					.getInstance().getDictionaryTreeAt(letterPosition);
 			// get three word closest to the input
 			matchResult[0] = DictionaryForXmlTree.ceiling(input);
-			matchResult[1] = DictionaryForXmlTree.higher(matchResult[0]);
-			matchResult[2] = DictionaryForXmlTree.higher(matchResult[1]);			
+			if(matchResult[0] != null){
+				matchResult[1] = DictionaryForXmlTree.higher(matchResult[0]);
+				if(matchResult[1] != null){
+					matchResult[2] = DictionaryForXmlTree.higher(matchResult[1]);
+					if(matchResult[2]==null)
+						matchResult[2]="";
+				}else {
+					matchResult[1] = "";
+				}
+			}else{
+				matchResult[0] = "";
+			}
+
+			for(int i = 0;i<matchResult.length;i++){
+				if(matchResult[i].startsWith(input) == false){
+					matchResult[i] = "";
+				}
+			}
 
 			// Iterator it =DictionaryForXmlTree.iterator();
-		}
+		
 		return matchResult;
 	}
 

@@ -36,7 +36,7 @@ public class XmlFileParser implements IDictionaryParser {
 	private final int WORDLIST_COUNT = 10;
 	
 	//define the number
-	private String[] typeStrings = {"adv.","pron.","v.","adj.","n.","prep.","int.","conj.","aux.","num."};
+	private String[] typeStrings = {"adv.","pron.","v.aux.","adj.","n.","prep.","int.","conj.","v.","num."};
 
 	// Each word-list needs a hash-table to record the index of the word in the
 	// word-list
@@ -282,14 +282,14 @@ public class XmlFileParser implements IDictionaryParser {
 		setLastTimeIndexFile(wordListPosition, cur, "file/LastTimeIndexFile.txt");
 	}
 	
-	//test
-	public static void main(String[] args) {
-		String filenameString = "./file/dictionary.xml";
-		XmlFileParser tmpParser = new XmlFileParser();
-		tmpParser.init(filenameString);
-
-	}
-	
+//	//test
+//	public static void main(String[] args) {
+//		String filenameString = "./file/dictionary.xml";
+//		XmlFileParser tmpParser = new XmlFileParser();
+//		tmpParser.init(filenameString);
+//
+//	}
+//	
 	/**
 	 * The entry to initialize everything we need by invoking two functions
 	 * @param filename the file name of the xml file which holds all of the words
@@ -364,14 +364,43 @@ public class XmlFileParser implements IDictionaryParser {
 				file.createNewFile();
 			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(
 					filename));
-			WordList wordList = DictionaryForXml.getInstance().getWordListArray()[wordListPostition];
-			ArrayList<Word> wordArray = wordList.getWordArray();
-			int len = wordArray.size();
-			for (int j = 0; j < len; j++) {
-				state = wordArray.get(j).getState();
-				bufferedWriter.write(state + "");
+			WordList wordList;// = DictionaryForXml.getInstance().getWordListArray()[wordListPostition];
+			ArrayList<Word> wordArray ;//= wordList.getWordArray();
+			int len ;//= wordArray.size();
+//			for (int j = 0; j < len; j++) {
+//				state = wordArray.get(j).getState();
+//				bufferedWriter.write(state + "");
+//				bufferedWriter.newLine();
+//			}
+			
+			
+			/*
+			 
+			 for(int i = 0; i < 26; i ++){
+				WordList wordList = Dictionary.getInstance().getWordListArray()[i];
+				ArrayList<Word> wordArray = wordList.getWordArray();
+				int len = wordArray.size();
+				for(int j = 0; j < len; j ++){
+					state = wordArray.get(j).getState();
+					bufferedWriter.write(state+"");
+					bufferedWriter.newLine();
+				}
+			} 
+			 
+			 */
+			for (int i = 0; i < WORDLIST_COUNT; i++) {
+				bufferedWriter.write("====" + typeStrings[i] + "====");
 				bufferedWriter.newLine();
+				wordList = DictionaryForXml.getInstance().getWordListArray()[i];
+				wordArray = wordList.getWordArray();
+				len = wordArray.size();
+				for (int j = 0; j < len; j++) {
+					state = wordArray.get(j).getState();
+					bufferedWriter.write(state + "");
+					bufferedWriter.newLine();
+				}
 			}
+			
 			bufferedWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();

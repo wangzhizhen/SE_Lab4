@@ -145,9 +145,42 @@ public class MainFrame extends JFrame {
 				// otherwise switch the panel
 				else {
 					int letterPosition = controller.getLetterPosition();
-					char wordBankChar = (char) ('A' + controller
-							.getLetterPosition());
-					String wordBankName = wordBankChar + "";
+					int wordBankPosition = controller.getLetterPosition();
+//					String wordBankName = wordBankChar + "";
+					String wordBankName = "";
+					switch(wordBankPosition){
+						case 0:
+							wordBankName = "副词";
+							break;
+						case 1:
+							wordBankName = "代词";
+							break;
+						case 2:
+							wordBankName = "助动词";
+							break;
+						case 3:
+							wordBankName = "形容词";
+							break;
+						case 4:
+							wordBankName = "名词";
+							break;
+						case 5:
+							wordBankName = "介词";
+							break;
+						case 6:
+							wordBankName = "感叹词";
+							break;
+						case 7:
+							wordBankName = "连词";
+							break;
+						case 8:
+							wordBankName = "动词";
+							break;
+						case 9:
+							wordBankName = "量词";
+							break;
+							
+					}
 					currentWordListResultPanel.setData(
 							wordBankName,
 							controller.getAllNum(letterPosition),
@@ -523,7 +556,7 @@ public class MainFrame extends JFrame {
 										wordBankName = "代词";
 										break;
 									case 2:
-										wordBankName = "动词";
+										wordBankName = "助动词";
 										break;
 									case 3:
 										wordBankName = "形容词";
@@ -541,7 +574,7 @@ public class MainFrame extends JFrame {
 										wordBankName = "连词";
 										break;
 									case 8:
-										wordBankName = "助动词";
+										wordBankName = "动词";
 										break;
 									case 9:
 										wordBankName = "量词";
@@ -576,9 +609,42 @@ public class MainFrame extends JFrame {
 							}
 							// switch the panel
 							else {
-								char wordBankChar = (char) ('A' + controller
-										.getLetterPosition());
-								String wordBankName = wordBankChar + "";
+								int wordBankPosition = controller.getLetterPosition();
+								//switch letterPosition to its Chinse word bank name
+								String wordBankName = "";
+								switch(wordBankPosition){
+									case 0:
+										wordBankName = "副词";
+										break;
+									case 1:
+										wordBankName = "代词";
+										break;
+									case 2:
+										wordBankName = "助动词";
+										break;
+									case 3:
+										wordBankName = "形容词";
+										break;
+									case 4:
+										wordBankName = "名词";
+										break;
+									case 5:
+										wordBankName = "介词";
+										break;
+									case 6:
+										wordBankName = "感叹词";
+										break;
+									case 7:
+										wordBankName = "连词";
+										break;
+									case 8:
+										wordBankName = "动词";
+										break;
+									case 9:
+										wordBankName = "量词";
+										break;
+										
+								}
 								quizResultPanel.setData(
 										wordBankName,
 										controller.getCurrrenQuizAllNum(),
